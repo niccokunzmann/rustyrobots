@@ -16,11 +16,11 @@ void setup() {
 void loop () {
   digitalWrite(pin_pwm_1, LOW);
   delay(500);
-  digitalWrite(pin_pwm_2, HIGH);
+  analogWrite(pin_pwm_2, 180);
   delay(1500); // fahren
   digitalWrite(pin_pwm_2, LOW);
   delay(500);
-  digitalWrite(pin_pwm_1, HIGH);
+  analogWrite(pin_pwm_1, 180);
   delay(1500); // fahren
   
 }
