@@ -2,6 +2,11 @@ Versionen von Roedel
 ====================
 
 
+Roedel v0.2.2
+-------------
+
+Die Version funktioniert einigermaßen gut. [Siehe Video.](http://youtu.be/wDSMWdDKJlY)
+
 Roedel V0.2
 -----------
 
