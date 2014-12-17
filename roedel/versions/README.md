@@ -10,7 +10,7 @@ Die Version funktioniert einigermaßen gut. [Siehe Video.](http://youtu.be/wDSMW
 Roedel V0.2
 -----------
 
-Zwei Vorderräder. Für "Modelcraft RS2" Servo.
+Zwei Vorderräder. Für "Modelcraft RS2" Servo. [Video](https://www.youtube.com/watch?v=7x2s_AlgUBw)
 
 ![roedel v0.2.jpg](roedel v0.2.jpg)
 
