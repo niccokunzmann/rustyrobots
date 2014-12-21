@@ -44,4 +44,4 @@ while True:
 #        GPIO.output(pin, False)
 #        time.sleep(0.002)
 #        GPIO.output(pin, True)
-        time.sleep(refresh_period)
+#        time.sleep(refresh_period)
