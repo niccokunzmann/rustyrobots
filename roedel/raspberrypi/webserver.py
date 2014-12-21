@@ -10,45 +10,45 @@ import time
 
 pin = 23
 
-HIGH = True
-LOW = False
+HIGH = False
+LOW = True
+
+# Pulse information for Modelcraft RS2 Servo
+#   http://www.servodatabase.com/servo/modelcraft/rs-2
+
+PULSE_CYCLE = 0.02 # seconds
+PULSE_WIDTH_MIN = 0.00054 # seconds
+PULSE_WIDTH_MAX = 0.00247 # seconds
+
+PULSE_WIDTH_MIN = 0.001 # seconds
+PULSE_WIDTH_MAX = 0.002 # seconds
+ROTATIONAL_RANGE = 203 # degrees
+
+
+last_servo_pulse = 0
 
 if IS_ON_RASPBERRY_PI:
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(pin, GPIO.OUT)
     def set_servo_position(degrees):
-        expected_value = (degrees % 360) / 360.0
-        start = time.time()
-        stop = start + 0.003
+        global last_servo_pulse
+        #print("set servo position to {}".format(degrees))
+        #now = time.time()
+        #if last_servo_pulse + PULSE_CYCLE > now:
+        #    time.sleep(last_servo_pulse + PULSE_CYCLE - now)
+        #last_servo_pulse = now
+        degrees = degrees % 360
+        if degrees > ROTATIONAL_RANGE:
+            degrees = ROTATIONAL_RANGE
+        pulse_width = PULSE_WIDTH_MIN + (PULSE_WIDTH_MAX - PULSE_WIDTH_MIN) * degrees / ROTATIONAL_RANGE
+        a = time.time()
         GPIO.output(pin, HIGH)
-        time.sleep(0.001)
-        high = 0.000000000001
-        low =  0.000000000001
-        last = time.time()
-        value = True
-        while 1:
-            now = time.time()
-            if now > stop:
-                break
-            if value:
-                high += now - last
-            else:
-                low  += now - last
-            if high / (high + low) > expected_value:
-                if value:
-                    GPIO.output(pin, LOW)
-                    value = False
-            else:
-                if not value:
-                    GPIO.output(pin, HIGH)
-                    value = True
-            last = now
+        time.sleep(pulse_width)
+        b = time.time()
         GPIO.output(pin, LOW)
-        time.sleep(0.018)
-        print("{}% {}% {:.8f} {:.8f}".format(
-            int(100 * expected_value), 
-            int(high / (high + low) * 100), 
-            high, low))
+        time.sleep(PULSE_CYCLE)
+        print("set servo position to {} {:.6f} {:.6f}".format(degrees, pulse_width, b - a - pulse_width))
+
 else:
     last_servo_position = None
     def set_servo_position(degrees):
@@ -73,7 +73,7 @@ def set_the_servo_value_loop():
 set_the_servo_value_thread_is_started = False
 set_the_servo_value_thread = threading.Thread(target = set_the_servo_value_loop)
 set_the_servo_value_thread.deamon = True
-set_the_servo_value_thread.start()
+#set_the_servo_value_thread.start()
 
 
 app = Bottle()
@@ -86,5 +86,12 @@ def servo_position(degrees):
         set_servo_position(degrees)
     return "Setting servo position to {}°.".format(int(degrees))
 
-run(app, host='', port=8080)
+# run(app, host='', port=8080)
+
+while 1:
+    for i in range(100):
+        set_servo_position(0)
+    for i in range(100):
+        set_servo_position(100)
+    
 
