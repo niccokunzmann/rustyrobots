@@ -8,9 +8,13 @@ except ImportError:
     IS_ON_RASPBERRY_PI = False
 import time
 
+pin = 23
+
 if IS_ON_RASPBERRY_PI:
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(pin, GPIO.OUT)
     def set_servo_position(degrees):
-        expected_value = degrees / 360.0
+        expected_value = (degrees % 360) / 360.0
         stop = time.time() + 0.002
         GPIO.output(pin, True)
         time.sleep(0.001)
@@ -66,5 +70,5 @@ def servo_position(degrees):
     expected_servo_value = degrees
     return "Setting servo position to {}°.".format(int(degrees))
 
-run(app, host='localhost', port=8080)
+run(app, host='', port=8080)
 
