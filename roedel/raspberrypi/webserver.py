@@ -20,23 +20,37 @@ PULSE_CYCLE = 0.02 # seconds
 PULSE_WIDTH_MIN = 0.00054 # seconds
 PULSE_WIDTH_MAX = 0.00247 # seconds
 ROTATIONAL_RANGE = 203 # degrees
-
+# 0.19 sec/60°
+SERVO_ADJUSTMENT_TIME = 1 # ROTATIONAL_RANGE / 60 * 0.19 # seconds
 
 last_servo_pulse = 0
+last_servo_position = None
+last_servo_position_time = 0
+
 
 if IS_ON_RASPBERRY_PI:
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(pin, GPIO.OUT)
     def set_servo_position(degrees):
-        global last_servo_pulse
+        global last_servo_pulse, last_servo_position, last_servo_position_time
         now = time.time()
+        # wait for the cycle
         if last_servo_pulse + PULSE_CYCLE > now:
             time.sleep(last_servo_pulse + PULSE_CYCLE - now)
         last_servo_pulse = time.time()
+        # do not pulse the servo if the position is reached to avoid jitter
+        if last_servo_position == degrees:
+            if last_servo_position_time + SERVO_ADJUSTMENT_TIME < now:
+                return
+        else:
+            last_servo_position_time = now
+            last_servo_position = degrees
+        # compute pulse width
         degrees = degrees % 360
         if degrees > ROTATIONAL_RANGE:
             degrees = ROTATIONAL_RANGE
         pulse_width = PULSE_WIDTH_MIN + (PULSE_WIDTH_MAX - PULSE_WIDTH_MIN) * degrees / ROTATIONAL_RANGE
+        # pulse the servo
         GPIO.output(pin, HIGH)
         time.sleep(pulse_width)
         GPIO.output(pin, LOW)
