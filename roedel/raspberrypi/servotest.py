@@ -1,5 +1,14 @@
+'''
+
+
+Raspberry Pi pin layout 
+  http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
+
+'''
+
 import RPi.GPIO as GPIO
 import time
+
 
 pin = 23
 refresh_period = 0.02
