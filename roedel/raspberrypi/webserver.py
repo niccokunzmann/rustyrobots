@@ -7,6 +7,31 @@ except ImportError:
     print('Not running on raspberry pi')
     IS_ON_RASPBERRY_PI = False
 import time
+import socket
+import sys
+
+PORT = 8080
+
+# broadcast
+
+def get_ip_address():
+    ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+    # get ip address
+    #  from http://stackoverflow.com/a/1267524/1320237
+    ip_sock.connect(('8.8.8.8', 80))
+    ip_address = ip_sock.getsockname()[0]
+    ip_sock.close()
+    return ip_address
+
+
+def broadcast_loop():
+   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)  
+   sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+   while 1:
+        ip_address = get_ip_address()
+        message = "Der Roedelroboter kann unter {}:{} gesteuert werden.".format(ip_address, PORT).encode('UTF-8')
+        sock.sendto(message, ('<broadcast>', 5458))
+        time.sleep(1)
 
 pin = 23
 
@@ -82,6 +107,11 @@ set_the_servo_value_thread.deamon = True
 set_the_servo_value_thread.start()
 
 
+broadcast_thread = threading.Thread(target = broadcast_loop)
+broadcast_thread.deamon = True
+broadcast_thread.start()
+
+
 app = Bottle()
 
 @app.route('/servo_position/<degrees:float>')
@@ -92,14 +122,6 @@ def servo_position(degrees):
         set_servo_position(degrees)
     return "Setting servo position to {}°.".format(int(degrees))
 
-run(app, host='', port=8080)
+print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(), PORT))
 
-while 0:
-    print(0)
-    for i in range(100):
-        set_servo_position(0)
-    print(100)
-    for i in range(100):
-        set_servo_position(100)
-    
-
+run(app, host='', port=PORT)
