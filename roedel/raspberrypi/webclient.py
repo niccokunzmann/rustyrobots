@@ -1,4 +1,7 @@
-import urllib.request
+try:
+    from urllib.request import urlopen # Python3
+except ImportError:
+    from urllib import urlopen # Python2
 import socket
 import re
 
@@ -16,5 +19,5 @@ while 1:
 while 1:
     i2 = input('position: ')
     if i2: i = i2
-    message = urllib.request.urlopen("http://" + address + "/servo_position/" + i).read()
+    message = urlopen("http://" + address + "/servo_position/" + i).read()
     print(message.decode('UTF-8'))
