@@ -22,16 +22,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="129.08917"
-     inkscape:cy="882.30625"
+     inkscape:zoom="4"
+     inkscape:cx="184.44111"
+     inkscape:cy="934.81281"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1005"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:window-width="1900"
+     inkscape:window-height="985"
+     inkscape:window-x="1"
+     inkscape:window-y="1"
      inkscape:window-maximized="1"
      units="mm"
      inkscape:snap-smooth-nodes="false"
@@ -148,7 +148,7 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Aleo;-inkscape-font-specification:Aleo;opacity:0.24556213"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.24556215;fill:#000000;fill-opacity:1;stroke:none;font-family:Aleo;-inkscape-font-specification:Aleo"
        x="135.32256"
        y="88.222092"
        id="text3881"
@@ -169,6 +169,14 @@
          sodipodi:role="line"
          x="135.32256"
          y="118.22209"
+         id="tspan8299">Bei Wegschnitt von 0.22 mm ist es </tspan><tspan
+         sodipodi:role="line"
+         x="135.32256"
+         y="128.22209"
+         id="tspan8303">11.71 = Kreisteilung + Wegschnitt</tspan><tspan
+         sodipodi:role="line"
+         x="135.32256"
+         y="138.22209"
          id="tspan3889" /></text>
     <path
        style="color:#000000;fill:#000000;fill-opacity:0.24313725;fill-rule:nonzero;stroke:none;stroke-width:0.99921262;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
