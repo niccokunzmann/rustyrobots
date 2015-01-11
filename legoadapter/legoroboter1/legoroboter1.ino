@@ -215,14 +215,14 @@ void setup() {
  * Das Programm *
  ****************
 
-  folgende Befehle koennen zum Fahren genutzt werden:
+  Folgende Befehle koennen zum Fahren genutzt werden:
   
     fahre_vorwaerts();
     fahre_rueckwaerts();
     stoppe();
     fahre_weiter();
     
-  folgende Befehle koennen zum Lenken genutzt werden:
+  Folgende Befehle koennen zum Lenken genutzt werden:
   
     lenke_gerade_aus();
     lenke_links();
