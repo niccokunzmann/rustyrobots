@@ -10,32 +10,39 @@
  * Einstellungen *
  *****************/
 
-/* Steuersteckplaetze fuer den Motor 
- * Das sind die Zahlen für die Pins. 
- * Sie führen auf Anschluss 1A und 2A der H-Brücke.
- */
+// Steuersteckplaetze fuer den Motor 
+// Das sind die Zahlen für die Pins. 
+// Sie führen auf Anschluss 1A und 2A der H-Brücke.
 const int motor_pin_1 = 9;
 const int motor_pin_2 = 10;
 
-/* Der Lenkungspin führe in den goldenen Anschluss 
- * vom Servo für die Lenkung.
- */
+// Der Lenkungspin führe in den goldenen Anschluss 
+// vom Servo für die Lenkung.
 const int lenkungs_pin = 8;
 
-/* Man muss ein bisschen warten, bis man die Richtung wechseln darf. 
- * Diese Konstante gibt die Zeit in Millisekunden an, 
- * die beim Stoppen gewartet wird.
- */
+// Man muss ein bisschen warten, bis man die Richtung wechseln darf. 
+// Diese Konstante gibt die Zeit in Millisekunden an, 
+// die beim Stoppen gewartet wird.
 const int ausrollverzoegerung_in_millisekuden = 300;
 
 /*****************************************
  * Deklarationen fuer die Motorsteuerung *
  *****************************************/
-typedef int Richtung;
-#define STOP 0
-#define NICHT 0
-#define VORWAERTS 1
-#define RUECKWAERTS -1
+ 
+// Die verschiedenen Richtungen, in die gefahren werden kann.
+enum Richtung {
+  STOP = 0,
+  NICHT = 0,
+  VORWAERTS = 1,
+  RUECKWAERTS = -1
+};
+
+// Wir müssen die Funktion fahre hier Deklarieren, 
+// weil wir sonst das enum Richtung nicht verwenden können.
+// Alle nichtdeklarierten funktionen werden von der Arduino-Software
+// automatisch am Anfang der Datei deklariert und dort gibt es noch kein
+// enum Richtung.
+void fahre(Richtung in_richtung);
 
 // Man kann in verschiedene Richungen fahren. 
 // Die Variable "richtung" hat immer einen der Werte 
@@ -62,7 +69,6 @@ Servo lenkung;
 // lenke_gerade_aus() kann im Programm verwendet werden, 
 // um den Roboter zu steuern. 
 void lenke_gerade_aus() {
-   
   lenkung.write(90); // 90° ist gerade aus.
   stoppe();          // Damit wir nicht zu viel Strom verbrauchen, 
                      // stoppen wir den anderen Motor während sich
@@ -161,7 +167,7 @@ void fahre_rueckwaerts() {
 // fahre(VORWAERTS)
 // fahre(RUECKWAERTS)
 // fahre(NICHT)
-void fahre(int in_richtung) {
+void fahre(Richtung in_richtung) {
   if (in_richtung == VORWAERTS) fahre_vorwaerts();
   if (in_richtung == RUECKWAERTS) fahre_rueckwaerts();
   if (in_richtung == STOP) stoppe();
