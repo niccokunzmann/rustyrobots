@@ -203,9 +203,10 @@ void starte_motor() {
  *****************/
 
 // setup() wird einmal beim Start des Arduinos ausgeführt.
+// Danach wird nur noch loop() aufgerufen.
 void setup() {
   starte_motor();     // Am Anfang starten wir den Motor.
-  starte_lenkung();   // Un die Lenkung muss initialisiert werden.
+  starte_lenkung();   // Die Lenkung muss initialisiert werden.
                       // In den folgenden Zeilen kann dann 
                       // der eigene Code stehen.
 }
