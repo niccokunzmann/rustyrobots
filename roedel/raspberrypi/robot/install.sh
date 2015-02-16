@@ -8,3 +8,5 @@ pip-3.2 install bottle
 cd `dirname $0`
 
 ./install_autostart.py
+
+git clone https://github.com/niccokunzmann/blockly.git --depth 1
