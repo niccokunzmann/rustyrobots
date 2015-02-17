@@ -74,7 +74,7 @@ def servo_position(degrees):
 @app.route("/execute_python")
 def execute_python():
     escaped_python_code = request.query['code']
-    source_code = urllib.parse.unquote(escaped_python_code)
+    source_code = escaped_python_code.encode('raw_unicode_escape').decode('utf-8')
     subprocess_code(source_code)
     return 'Executing Python code.'
 
