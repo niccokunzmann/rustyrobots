@@ -16,7 +16,8 @@ import subprocess
 import os
 import urllib.request
 import urllib.parse
-from configuration import SERVOSERVER, WEBSERVER, local_path
+from configuration import SERVOSERVER, WEBSERVER
+import configuration
 from servo_client import *
 import json
 import traceback
@@ -56,6 +57,7 @@ broadcast_thread.deamon = True
 broadcast_thread.start()
 
 current_subprocess = None
+roboter_id = repr(os.urandom(8))
 
 def get_robot_information():
         ip = get_ip_address()
@@ -72,12 +74,17 @@ def get_robot_information():
             shutdown = url + '/shutdown',
             update = url + '/update',
             rename = url + '/rename',
+            information_javascript = url + "/information.js",
+            id = roboter_id,
             )
         return robot
 
+def get_robot_register_information():
+    return {'information_javascript': get_robot_information()['information_javascript']}
+
 def register_server():
     while 1:
-        robot = get_robot_information()
+        robot = get_robot_register_information()
         if not robot:
             time.sleep(5)
             continue
@@ -291,9 +298,14 @@ def git_pull(directory):
                                    stderr = subprocess.STDOUT ,
                                    cwd = os.path.dirname(__file__))
     known_hosts_file = "/home/pi/.ssh/known_hosts"
-    if not os.path.isfile(known_hosts_file) or \
-       not any(github_key in line for line in open(known_hosts_file, 'rb')):
-        with open(known_hosts_file, "ab") as f:
+    mode = None
+    if not os.path.isfile(known_hosts_file):
+        mode = "wb"
+    elif not any(github_key in line for line in open(known_hosts_file, 'rb')):
+        mode = "ab"
+    if mode:
+        os.makedirs(os.path.dirname(known_hosts_file), exist_ok = True)
+        with open(known_hosts_file, mode) as f:
             f.write(github_key + b'\n')
     command = ["ssh-agent", "bash", "-c", "ssh-add /home/pi/.ssh/id_rsa; git pull origin master"]
     return subprocess.check_output(command,
@@ -324,11 +336,26 @@ def rename(hostname = ""):
     with open(hostname_file_path, 'w') as f:
         f.write(hostname + "\n")
     return '"{}" => "{}"'.format(old_hostname, hostname)
+
+@app.route('/set_image')
+@authenticate
+@callback_function
+def set_image(image_url = WEBSERVER.ROBOTER_IMAGE_URL):
+    WEBSERVER.ROBOTER_IMAGE_URL = url
+    configuration.dump()
+    configuration.load()
+    return WEBSERVER.ROBOTER_IMAGE_URL
     
 @app.route('/information')
 def get_information():
     response.content_type = "application/json; charset=UTF8"
     return get_robot_information()
+
+@app.route('/information.js')
+def get_information():
+    response.content_type = "application/javascript; charset=UTF8"
+    return "add_robot_information({})".format(json.dumps(get_robot_information()))
+
 
 if __name__ == '__main__':
     if not is_servo_server_present():
