@@ -76,6 +76,7 @@ def get_robot_information():
             rename = url + '/rename',
             information_javascript = url + "/information.js",
             id = roboter_id,
+            set_image_url = url + "/set_image_url",
             )
         return robot
 
@@ -337,11 +338,14 @@ def rename(hostname = ""):
         f.write(hostname + "\n")
     return '"{}" => "{}"'.format(old_hostname, hostname)
 
-@app.route('/set_image')
+@app.route('/set_image_url')
 @authenticate
 @callback_function
-def set_image(image_url = WEBSERVER.ROBOTER_IMAGE_URL):
-    WEBSERVER.ROBOTER_IMAGE_URL = url
+def set_image_url(image_url = WEBSERVER.ROBOTER_IMAGE_URL):
+    print(image_url)
+    WEBSERVER.ROBOTER_IMAGE_URL = image_url
+    print(WEBSERVER.ROBOTER_IMAGE_URL)
+    print(configuration.configuration["WEBSERVER"]["ROBOTER_IMAGE_URL"])
     configuration.dump()
     configuration.load()
     return WEBSERVER.ROBOTER_IMAGE_URL

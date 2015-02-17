@@ -1,4 +1,5 @@
 import os
+import json
 
 def local_path(path):
     here = os.path.dirname(__file__)
@@ -50,10 +51,11 @@ configuration = dict(
 )
 
 def load():
+    global configuration
     if os.path.isfile(CONFIGURATION_FILE):
-        with open(configuration_file()) as f:
+        with open(CONFIGURATION_FILE) as f:
             configuration = json.load(f)
-            for key, value in configuration:
+            for key, value in configuration.items():
                 globals()[key].__dict__ = value
 
 def dump():
