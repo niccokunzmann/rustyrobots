@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import threading
-from bottle import Bottle, run
+from bottle import Bottle, run, request
 try:
     from RPIO import PWM
     # http://pythonhosted.org/RPIO/pwm_py.html
@@ -12,6 +12,8 @@ except ImportError:
 import time
 import socket
 import sys
+import subprocess
+import urllib.parse
 
 PORT = 8080
 
@@ -70,6 +72,9 @@ broadcast_thread = threading.Thread(target = broadcast_loop)
 broadcast_thread.deamon = True
 broadcast_thread.start()
 
+current_subprocess = None
+
+
 
 app = Bottle()
 
@@ -78,6 +83,13 @@ def servo_position(degrees):
     set_servo_position(degrees)
     return "Setting servo position to {}°.".format(int(degrees))
 
+@app.route("/execute_python")
+def execute_python():
+    escaped_python_code = request.query['code']
+    source_code = urllib.parse.unquote(escaped_python_code)
+    print(source_code)
+
+set_servo_position(ROTATIONAL_RANGE / 2)
 print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(), PORT))
 
 run(app, host='', port=PORT)
