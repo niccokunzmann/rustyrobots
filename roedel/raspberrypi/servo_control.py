@@ -46,6 +46,7 @@ if IS_ON_RASPBERRY_PI:
         if degrees > ROTATIONAL_RANGE:
             degrees = ROTATIONAL_RANGE
         pulse_width = PULSE_WIDTH_MIN + (PULSE_WIDTH_MAX - PULSE_WIDTH_MIN) * degrees / ROTATIONAL_RANGE
+
         # pulse the servo
         servo.set_servo(SERVO_PIN, int(pulse_width * 100000) * 10) 
 
