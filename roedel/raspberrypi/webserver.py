@@ -1,19 +1,15 @@
 #!/usr/bin/python3
 import threading
 from bottle import Bottle, run, request
-try:
-    from RPIO import PWM
-    # http://pythonhosted.org/RPIO/pwm_py.html
-    servo = PWM.Servo()
-    IS_ON_RASPBERRY_PI = True
-except ImportError:
-    print('Not running on raspberry pi')
-    IS_ON_RASPBERRY_PI = False
 import time
 import socket
 import sys
 import subprocess
 import urllib.parse
+import os
+import io
+
+from servo_control import *
 
 PORT = 8080
 
@@ -38,35 +34,6 @@ def broadcast_loop():
         sock.sendto(message, ('<broadcast>', 5458))
         time.sleep(1)
 
-pin = 11
-
-HIGH = True
-LOW = False
-
-# Pulse information for Modelcraft RS2 Servo
-#   http://www.servodatabase.com/servo/modelcraft/rs-2
-
-PULSE_CYCLE = 0.02 # seconds
-PULSE_WIDTH_MIN = 0.00054 # seconds
-PULSE_WIDTH_MAX = 0.00247 # seconds
-ROTATIONAL_RANGE = 203 # degrees
-# 0.19 sec/60°
-SERVO_ADJUSTMENT_TIME = 1 # ROTATIONAL_RANGE / 60 * 0.19 # seconds
-
-
-if IS_ON_RASPBERRY_PI:
-    def set_servo_position(degrees):
-        # compute pulse width
-        degrees = degrees % 360
-        if degrees > ROTATIONAL_RANGE:
-            degrees = ROTATIONAL_RANGE
-        pulse_width = PULSE_WIDTH_MIN + (PULSE_WIDTH_MAX - PULSE_WIDTH_MIN) * degrees / ROTATIONAL_RANGE
-        # pulse the servo
-        servo.set_servo(pin, int(pulse_width * 100000) * 10) 
-
-else:
-    def set_servo_position(degrees):
-        print('set servo position to {}°.'.format(int(degrees)))
 
 broadcast_thread = threading.Thread(target = broadcast_loop)
 broadcast_thread.deamon = True
@@ -74,8 +41,29 @@ broadcast_thread.start()
 
 current_subprocess = None
 
+def stop_subprocess():
+    global current_subprocess
+    if current_subprocess:
+        print('writing stop, waiting to close')
+        try:
+            current_subprocess.stdin.write(b'stop\n')
+        except IOError:
+            pass
+        current_subprocess.wait()
+        print('closed')
+        current_subprocess = None
 
 
+def subprocess_code(source_code):
+    global current_subprocess
+    stop_subprocess()
+    path = os.path.join(os.path.dirname(__file__), 'execute_webcode.py')
+    current_subprocess = subprocess.Popen(
+        [sys.executable, path, source_code],
+        stdin = subprocess.PIPE,
+        stdout = subprocess.PIPE,
+        stderr = subprocess.PIPE,
+        )
 app = Bottle()
 
 @app.route('/servo_position/<degrees:float>')
@@ -87,9 +75,14 @@ def servo_position(degrees):
 def execute_python():
     escaped_python_code = request.query['code']
     source_code = urllib.parse.unquote(escaped_python_code)
-    print(source_code)
+    subprocess_code(source_code)
+    return 'Executing Python code.'
 
-set_servo_position(ROTATIONAL_RANGE / 2)
+@app.route("/stop_execution")
+def stop_execution():
+    stop_subprocess()
+
+set_servo_to_middle()
 print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(), PORT))
 
 run(app, host='', port=PORT)
