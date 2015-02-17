@@ -9,12 +9,15 @@ Mit diesem QR-Code kann man die [App herunterladen](https://github.com/niccokunz
 Funktionsweise
 --------------
 
-Die App sendet die Servoposition an den Webserver, der auf dem Raspberry PI läuft. Dieser setzt die Position des Servos. Wie steht in [diesen Artikel](http://www.doctormonk.com/2012/07/raspberry-pi-gpio-driving-servo.html). Der Pin 23 wird genutzt. Wo man die Pins findet, steht [hier](http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/). Der Servo hat eine extra batterie und die beiden Grounds (Masse oder Minus -) des RaspberryPi und der Batterie müssen verbunden werden. Nicht die beiden positiven Spannungen verbinden! Dadurch kann der Servo von Pin 23 angepulst werden.
-
+Die App sendet die Servoposition an den Webserver, der auf dem Raspberry PI läuft. Dieser setzt die Position des Servos. [RPIO](http://pythonhosted.org/RPIO/pwm_py.html) wird genutzt zur Steurung des Servos. Der GPIO-Pin 11 wird genutzt. Wo man die Pins findet, steht [hier](http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/). Der Servo hat eine extra Batterie und die beiden Grounds (Masse oder Minus -) des RaspberryPi und der Batterie müssen verbunden werden. Nicht die beiden positiven Spannungen verbinden! Dadurch kann der Servo von Pin 23 angepulst werden.
 
 Installation
 ------------
 
 Der Webserver braucht das Modul `bottle`. 
-Das kann man mit `pip-3.2 install bottle` installieren.   Das `RPI.GPIO`-Modul wird auch benutzt. Installation kann man [hier](http://sourceforge.net/p/raspberry-gpio-python/wiki/install/) finden. Meistens ist es schon da.
+Das kann man mit `pip-3.2 install bottle` installieren. Das `RPIO`-Modul wird auch benutzt. Mit `pip-3.2 install RPIO` kann es installiert werden. 
 
+Alte Verweise
+-------------
+
+Wie man selbst den Servo ansteuert, steht in [diesen Artikel](http://www.doctormonk.com/2012/07/raspberry-pi-gpio-driving-servo.html).
