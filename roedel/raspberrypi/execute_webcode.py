@@ -21,7 +21,7 @@ def sleep_until_in_position(degrees):
     time.sleep(time_for_rotation)
     last_degrees = degrees
 
-def set_servo_position(degrees):
+def set_servo_position(degrees = 0):
     with lock:
         _set_servo_position(degrees)
         sleep_until_in_position(degrees)
