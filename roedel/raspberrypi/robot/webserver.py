@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-if sys.argv[1] == "-log":
+if len(sys.argv) >= 2 and sys.argv[1] == "-log":
     LOG_FILE = sys.argv[2]
     sys.stdout = sys.stderr = open(LOG_FILE, 'a', encoding = 'UTF-8')
 else:
@@ -100,7 +100,7 @@ def subprocess_code(source_code):
     stop_subprocess()
     path = os.path.join(os.path.dirname(__file__), 'execute_webcode.py')
     current_subprocess = subprocess.Popen(
-        [sys.executable, path, source_code],
+        [sys.executable, path, source_code, str(PORT)],
         stdin = subprocess.PIPE,
         stdout = sys.stdout,
         stderr = sys.stderr,
@@ -111,7 +111,7 @@ app = Bottle()
 
 @app.route('/servo_position/<degrees:float>')
 def servo_position(degrees):
-    subprocess_code('_set_servo_position({})'.format(degrees))
+    set_servo_position(degrees)
     return "Setting servo position to {}°.".format(int(degrees))
 
 @app.route("/execute_python")
