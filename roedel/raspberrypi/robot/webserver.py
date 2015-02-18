@@ -26,7 +26,10 @@ def get_ip_address():
     ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
     # get ip address
     #  from http://stackoverflow.com/a/1267524/1320237
-    ip_sock.connect(('8.8.8.8', 80))
+    try:
+        ip_sock.connect(('8.8.8.8', 80))
+    except socket.error:
+        return ''
     ip_address = ip_sock.getsockname()[0]
     ip_sock.close()
     return ip_address
@@ -49,20 +52,24 @@ broadcast_thread.start()
 current_subprocess = None
 
 def register_server():
-    ip = get_ip_address()
-    url = 'http://{}:{}'.format(ip, PORT)
-    robot = dict(
-        ip = ip, port = PORT, name = socket.gethostname(),
-        url = url, echo = url + '/echo',
-        image = ROBOTER_IMAGE_URL)
-    query = REGISTER_SERVER_URL + '?' + urllib.parse.urlencode(robot)
-    try:
-        with urllib.request.urlopen(query) as f:
-            print(f.read().decode('utf-8'))
-            #print(REGISTER_SERVER_URL)
-    except urllib.error.URLError as e:
-        print('could not register robot at', REGISTER_SERVER_URL, '. Reason:', e)
-
+    while 1:
+        ip = get_ip_address()
+        if not ip:
+            time.sleep(5)
+            continue
+        url = 'http://{}:{}'.format(ip, PORT)
+        robot = dict(
+            ip = ip, port = PORT, name = socket.gethostname(),
+            url = url, echo = url + '/echo',
+            image = ROBOTER_IMAGE_URL)
+        query = REGISTER_SERVER_URL + '?' + urllib.parse.urlencode(robot)
+        try:
+            with urllib.request.urlopen(query) as f:
+                print(f.read().decode('utf-8'))
+        except urllib.error.URLError as e:
+            print('could not register robot at', REGISTER_SERVER_URL, '. Reason:', e)
+            time.sleep(5)
+            
 register_server_thread = threading.Thread(target = register_server)
 register_server_thread.deamon = True
 register_server_thread.start()
@@ -93,7 +100,7 @@ app = Bottle()
 
 @app.route('/servo_position/<degrees:float>')
 def servo_position(degrees):
-    subprocess_code('set_servo_position({})'.format(degrees))
+    subprocess_code('_set_servo_position({})'.format(degrees))
     return "Setting servo position to {}°.".format(int(degrees))
 
 @app.route("/execute_python")
