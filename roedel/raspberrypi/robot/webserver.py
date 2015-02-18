@@ -66,6 +66,7 @@ def register_server():
         try:
             with urllib.request.urlopen(query) as f:
                 print(f.read().decode('utf-8'))
+                break
         except urllib.error.URLError as e:
             print('could not register robot at', REGISTER_SERVER_URL, '. Reason:', e)
             time.sleep(5)
