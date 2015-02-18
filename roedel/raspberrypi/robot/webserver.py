@@ -126,8 +126,12 @@ def root():
     query['server'] = "{}:{}".format(get_ip_address(), PORT)
     url = INDEX_URL
     url += '?' + urllib.parse.urlencode(query)
-    print(query)
     redirect(url)
+
+@app.route('/log')
+def show_log_file():
+    return static_file('webserver.py.log', root = '.',
+                       mimetype = 'text/plain', charset = 'UTF-8')
 
 set_servo_to_middle()
 print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(), PORT))
