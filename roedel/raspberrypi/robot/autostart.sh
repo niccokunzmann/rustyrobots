@@ -8,7 +8,7 @@ rm $log
 touch $log
 chown `ls /home | head -1` $log
 
-./webserver.py &>>$log &
+./webserver.py -log $log &
 
 
 

@@ -1,9 +1,16 @@
 #!/usr/bin/python3
+
+import sys
+if sys.argv[1] == "-log":
+    LOG_FILE = sys.argv[2]
+    sys.stdout = sys.stderr = open(LOG_FILE, 'a', encoding = 'UTF-8')
+else:
+    LOG_FILE = None
+
 import threading
-from bottle import Bottle, run, request, static_file, response, redirect
+from bottle import Bottle, run, request, static_file, response, redirect, response
 import time
 import socket
-import sys
 import subprocess
 import urllib.parse
 import os
@@ -11,6 +18,7 @@ import fcntl
 import io
 import urllib.request
 import urllib.parse
+
 
 from servo_control import *
 
@@ -94,6 +102,8 @@ def subprocess_code(source_code):
     current_subprocess = subprocess.Popen(
         [sys.executable, path, source_code],
         stdin = subprocess.PIPE,
+        stdout = sys.stdout,
+        stderr = sys.stderr,
         )
     open('/tmp/subprocess.out', 'w').close()
 
@@ -138,8 +148,12 @@ def root():
 
 @app.route('/log')
 def show_log_file():
-    return static_file('webserver.py.log', root = '.',
-                       mimetype = 'text/plain', charset = 'UTF-8')
+    if LOG_FILE is None:
+        return 'Output is currently not logged.'
+    response.content_type = 'text/plain; charset=UTF8'
+    sys.stdout.flush()
+    sys.stderr.flush()
+    return open(LOG_FILE, 'rb')
 
 set_servo_to_middle()
 print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(), PORT))
