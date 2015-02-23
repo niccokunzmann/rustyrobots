@@ -11,7 +11,7 @@ Rödel via App Steuern
 
 [Video](https://www.youtube.com/watch?v=wF0yfeDUJzY&feature=youtu.be)
 
-[![roboterapp.apk](roboterapp.apk.qrcode.png)](https://github.com/niccokunzmann/rustyrobots/raw/master/roedel/raspberrypi/client/roboterapp.apk)  
+[![roboterapp.apk](client/roboterapp.apk.qrcode.png)](https://github.com/niccokunzmann/rustyrobots/raw/master/roedel/raspberrypi/client/roboterapp.apk)  
 Mit diesem QR-Code kann man die [App herunterladen](https://github.com/niccokunzmann/rustyrobots/raw/master/roedel/raspberrypi/roboterapp.apk).
 
 Funktionsweise
