@@ -82,6 +82,7 @@ def set_servo_velocity(velocity_multiplier):
     elif velocity_multiplier > SERVO.MAXIMUM_VELOCITY_MULTIPLIER:
         velocity_multiplier = SERVO.MAXIMUM_VELOCITY_MULTIPLIER
     servo_velocity_multiplier = velocity_multiplier
+    return servo_velocity_multiplier
 
 IDLE_SLEEP_TIME = 0.01
 
