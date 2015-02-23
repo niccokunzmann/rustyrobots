@@ -7,6 +7,10 @@ except ImportError:
     RPIO_IS_PRESENT = False
 
 from configuration import SERVO
+import threading
+import time
+
+current_servo_position = None
 
 if RPIO_IS_PRESENT:
     servo = None
@@ -33,7 +37,10 @@ if RPIO_IS_PRESENT:
                 continue
             signal.signal(si, h)
 
-    def set_servo_position(degrees):
+    servo_lock = threading.Lock()
+
+    def _set_servo_position(degrees):
+        global current_servo_position
         init_servo()
         # compute pulse width
         degrees = degrees % 360
@@ -44,16 +51,60 @@ if RPIO_IS_PRESENT:
                       / SERVO.ROTATIONAL_RANGE
 
         # pulse the servo
-        servo.set_servo(SERVO.PIN, int(pulse_width * 100000) * 10) 
+        with servo_lock:
+            servo.set_servo(SERVO.PIN, int(pulse_width * 100000) * 10)
+        current_servo_position = degrees
 
 else:
-    def set_servo_position(degrees):
+    def _set_servo_position(degrees):
+        global current_servo_position
         print('set servo position to {}°.'.format(int(degrees)))
+        current_servo_position = degrees
+
+wanted_servo_position = None
+
+def set_servo_position(degrees):
+    global wanted_servo_position
+    wanted_servo_position = degrees
 
 def set_servo_to_middle():
-    set_servo_position(SERVO.ROTATIONAL_RANGE / 2)
+    set_servo_position(wanted_servo_position)
 
-__all__ = ['set_servo_position', 'set_servo_to_middle']
-for name in list(globals()):
-    if name == name.upper() and name:
-        __all__.append(name)
+servo_velocity_multiplier = SERVO.DEFAULT_VELOCITY_MULTIPLIER
+
+def set_servo_velocity(velocity_multiplier):
+    global servo_velocity_multiplier
+    velocity_multiplier = float(velocity_multiplier)
+    if velocity_multiplier < SERVO.MINIMUM_VELOCITY_MULTIPLIER:
+        velocity_multiplier = SERVO.MINIMUM_VELOCITY_MULTIPLIER
+    elif velocity_multiplier > SERVO.MAXIMUM_VELOCITY_MULTIPLIER:
+        velocity_multiplier = SERVO.MAXIMUM_VELOCITY_MULTIPLIER
+    servo_velocity_multiplier = velocity_multiplier
+
+IDLE_SLEEP_TIME = 0.01
+
+def servo_move_loop():
+    while 1:
+        reaction_time = SERVO.REACTION_TIME_FOR_NEW_POSITION_IN_SECONDS
+        if current_servo_position is None or \
+           wanted_servo_position  is None:
+            time.sleep(reaction_time)
+            continue
+        if wanted_servo_position < current_servo_position - SERVO.DEGREES_PER_STEP:
+            step = -SERVO.DEGREES_PER_STEP
+        elif wanted_servo_position > current_servo_position + SERVO.DEGREES_PER_STEP:
+            step = SERVO.DEGREES_PER_STEP
+        else:
+            step = wanted_servo_position - current_servo_position
+        if abs(step) > 0.01:
+            _set_servo_position(current_servo_position + step)
+        sleep_time = step * SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES * servo_velocity_multiplier
+        if sleep_time < reaction_time:
+            time.sleep(reaction_time)
+            continue        
+
+servo_move_thread = threading.Thread(target = servo_move_loop)
+servo_move_thread.deamon = True
+servo_move_thread.start()
+
+__all__ = ['set_servo_position', 'set_servo_to_middle', 'RPIO_IS_PRESENT']
