@@ -41,6 +41,8 @@ if RPIO_IS_PRESENT:
 
     def _set_servo_position(degrees):
         global current_servo_position
+        if current_servo_position == degrees:
+            return
         init_servo()
         # compute pulse width
         degrees = degrees % 360
@@ -68,7 +70,7 @@ def set_servo_position(degrees):
     wanted_servo_position = degrees
 
 def set_servo_to_middle():
-    set_servo_position(wanted_servo_position)
+    set_servo_position(SERVO.ROTATIONAL_RANGE / 2)
 
 servo_velocity_multiplier = SERVO.DEFAULT_VELOCITY_MULTIPLIER
 
@@ -85,26 +87,26 @@ IDLE_SLEEP_TIME = 0.01
 
 def servo_move_loop():
     while 1:
-        reaction_time = SERVO.REACTION_TIME_FOR_NEW_POSITION_IN_SECONDS
-        if current_servo_position is None or \
-           wanted_servo_position  is None:
-            time.sleep(reaction_time)
+        # wait for servo to arrive
+        time.sleep(SERVO.REACTION_TIME_FOR_NEW_POSITION_IN_SECONDS)
+        # test if the parameters are valid
+        if wanted_servo_position  is None:
             continue
-        if wanted_servo_position < current_servo_position - SERVO.DEGREES_PER_STEP:
-            step = -SERVO.DEGREES_PER_STEP
-        elif wanted_servo_position > current_servo_position + SERVO.DEGREES_PER_STEP:
-            step = SERVO.DEGREES_PER_STEP
+        if current_servo_position is None:
+            _set_servo_position(wanted_servo_position)
+            continue
+        # conpute the the step size in degrees
+        # for the movement within the reaction time
+        step_size = SERVO.REACTION_TIME_FOR_NEW_POSITION_IN_SECONDS / \
+                    SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES / \
+                    servo_velocity_multiplier
+        if wanted_servo_position < current_servo_position - step_size:
+            step = -step_size
+        elif wanted_servo_position > current_servo_position + step_size:
+            step = step_size
         else:
             step = wanted_servo_position - current_servo_position
-        if abs(step) > 0.01:
-            _set_servo_position(current_servo_position + step)
-        sleep_time = step * SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES * servo_velocity_multiplier
-        if sleep_time < reaction_time:
-            time.sleep(reaction_time)
-            continue        
+        _set_servo_position(current_servo_position + step)
 
-servo_move_thread = threading.Thread(target = servo_move_loop)
-servo_move_thread.deamon = True
-servo_move_thread.start()
-
-__all__ = ['set_servo_position', 'set_servo_to_middle', 'RPIO_IS_PRESENT']
+__all__ = ['set_servo_position', 'set_servo_to_middle', 'RPIO_IS_PRESENT', \
+           'set_servo_velocity', 'servo_move_loop']
