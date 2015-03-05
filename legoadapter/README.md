@@ -9,4 +9,4 @@ Hier befinden sich Adapter für Motoren, die mit dem Lasercutter ausgeschnitten 
 - [Johnson Mit Schneckenradgehäuse](JohnsonMitSchneckenradGehäuse.svg) - ein 8langx4breitx3hoch Legohalter für den [Johnsonmotor mit Schneckenrad](../equipment/motoren/JohnsonMitSchneckenrad.md).
 
 
-Webseite, die sehr geholfen hat und ansehenswert ist: [http://www.cailliau.org/Lego/]zWelcome-en.html](http://www.cailliau.org/Lego/zWelcome-en.html)
+Webseite, die sehr geholfen hat und ansehenswert ist: [www.cailliau.org/Lego/zWelcome-en.html](http://www.cailliau.org/Lego/zWelcome-en.html)
