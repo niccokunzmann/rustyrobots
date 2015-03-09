@@ -7,6 +7,11 @@ Kleine, lasercutbare Roboter.
 - [Johanna](johanna), ein Roboter mit einem Motor mit Schneckenrad
 - [Rödel](roedel), ein Roboter mit einem Servo
 
+Andere Projekte
+---------------
+
+- [mearm](https://github.com/niccokunzmann/mearm), ein Greifarm mit 4 Servos
+- [rotoscopes](https://github.com/niccokunzmann/rotoscopes) wenn man die Roboter schöner machen möchte und Tiere und Autos braucht
 
 Lizenz
 ------
