@@ -22,11 +22,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.6203867"
-     inkscape:cx="-453.75165"
-     inkscape:cy="-302.27688"
+     inkscape:zoom="7.2407734"
+     inkscape:cx="478.75462"
+     inkscape:cy="112.78798"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer11"
+     inkscape:current-layer="layer10"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1005"
@@ -1559,11 +1559,6 @@
        style="opacity:0.33000004;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:21.25984192;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <path
        inkscape:connector-curvature="0"
-       style="opacity:0.33000004;color:#000000;fill:#000080;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.39251971;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 890.74172,-546.15235 c -0.6037,0.10643 -1.20938,0.1875 -1.84375,0.1875 l -8.8125,0 0,0.0312 2.6875,24.09375 -10.5625,1.15625 1.1875,10.5625 31.65625,-3.53125 -1.15625,-10.5625 -10.5625,1.1875 -2.59375,-23.125 z"
-       id="path6921-5-6" />
-    <path
-       inkscape:connector-curvature="0"
        id="path7716"
        d="m 1132.2102,-575.51744 0,10.625 10.625,0 0,24.8126 10.625,0 0,-24.8126 10.625,0 0,-10.625 -31.875,0 z"
        style="opacity:0.33000004;color:#000000;fill:#000080;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.39251971;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
@@ -1579,5 +1574,10 @@
        id="path9140"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path9219"
+       d="m 1367.0909,-486.70692 -10.6251,0 0,10.625 -24.8125,0 0,10.625 24.8125,0 0,10.625 10.6251,0 0,-31.875 z"
+       style="opacity:0.33000004;color:#000000;fill:#000080;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.39251971;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
 </svg>
