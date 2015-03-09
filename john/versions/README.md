@@ -1,6 +1,13 @@
 Versionen von John
 ==================
 
+John V0.4
+---------
+
+Dise Version funktioniert gut.  
+Die Vorderräder wurden verbessert - sie brechen schlechter ab. Sie stammen von Rödels Hinterrädern.  
+Die Antriebsachse ist immernoch eine Schwachstelle. Sie bricht.
+
 John V0.3
 ---------
 
