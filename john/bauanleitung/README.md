@@ -20,3 +20,4 @@ Werkzeuge:
 - 1TL Öl (Feinmechaniköl, Sonnenblumenöl oder Olivenöl)
 - Feile 
 - Kleber
+- ein Messer, wenn der Lasercutter schlecht schneidet
