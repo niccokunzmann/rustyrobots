@@ -61,6 +61,11 @@ def update():
     stdout, stderr = p.communicate()
     return stdout
 
+@route('/delete_all')
+def delete_all():
+    save_robots([])
+    return 'robots deleted'
+
 
 debug(True)
 
