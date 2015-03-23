@@ -126,9 +126,13 @@ def root():
     query['server'] = "{}:{}".format(get_ip_address(), PORT)
     url = INDEX_URL
     url += '?' + urllib.parse.urlencode(query)
+    print(query)
     redirect(url)
 
 set_servo_to_middle()
 print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(), PORT))
+
+with open(__file__ + '.pid', 'w') as f:
+    f.write(str(os.getpid()))
 
 run(app, host='', port=PORT)
