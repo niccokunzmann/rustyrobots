@@ -34,11 +34,20 @@ function robotsLoaded(new_robots) {
   robots = new_robots;
   for (var i = 0; i < robots.length; i+= 1) {
     robot = robots[i];
-    add_robot(robot, i);
+    check_robot(robot, i);
   }
 }
 
-function add_robot(robot, index) {
+function check_robot(robot, index) {
+  if (robot.echo == null) return;
+  url = robot.echo + '?content=add_robot(' + index + ')';
+  var script = document.createElement('script');
+  script.src = url;
+  document.head.appendChild(script)
+}
+
+function add_robot(index) {
+  robot = robots[index];
   var exampleEntry = document.getElementById('exampleEntry');
   html = exampleEntry.innerHTML;
   robot.index = index;

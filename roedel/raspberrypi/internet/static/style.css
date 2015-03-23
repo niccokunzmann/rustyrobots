@@ -1,6 +1,7 @@
 
 #exampleEntry {
-  /*visilbility: hidden;*/
+  visibility: hidden;
+  height: 0px;
 }
 
 .robotImage {
