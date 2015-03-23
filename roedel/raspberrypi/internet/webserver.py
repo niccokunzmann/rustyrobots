@@ -1,6 +1,6 @@
 
 # A very simple Bottle Hello World app for you to get started with...
-from bottle import default_app, route, request, static_file, redirect
+from bottle import default_app, route, request, static_file, redirect, debug, response
 import json
 import os
 
@@ -9,6 +9,8 @@ static_directory = os.path.join(server_directory, 'static')
 robots_file = os.path.join(static_directory, "robots.json")
 
 def load_robots():
+    if not os.path.isfile(robots_file):
+        return []
     with open(robots_file) as f:
         try:
             return json.load(f)
@@ -21,20 +23,26 @@ def save_robots(robots):
 
 @route('/')
 def hello_world():
-    redirect('/static')
+    redirect('/static/index.html')
 
 @route('/new_robot')
 def new_robot():
+    response.content_type = 'text/plain; charset=UTF8'
     robots = load_robots()
     robot = dict(request.query)
     if robot not in robots:
         robots.insert(0, robot)
+        result = "successfully registered:\n\t" + "\n\t".join("{}:{}".format(key, value) for key, value in sorted(robot.items()))
+    else:
+        result = "robot is known"
     save_robots(robots)
+    return result
 
 @route('/static/<filename:path>')
 def serve_static_file(filename):
     return static_file(filename, root = static_directory)
 
+debug(True)
 
 application = default_app()
 
