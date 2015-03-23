@@ -3,13 +3,14 @@
 from bottle import default_app, route, request, static_file, redirect, debug, response
 import json
 import os
+import subprocess
 
 server_directory = os.path.dirname(__file__)
 static_directory = os.path.join(server_directory, 'static')
 robots_file_path = os.path.join('/static', "robots.json")
 robots_file = os.path.join(server_directory, 'static', "robots.json")
 
-os.system('git pull')
+subprocess.call(['git', 'pull'])
 
 def load_robots():
     if not os.path.isfile(robots_file):
