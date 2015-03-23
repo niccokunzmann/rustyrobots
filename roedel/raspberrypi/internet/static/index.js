@@ -43,7 +43,7 @@ function check_robot(robot, index) {
   url = robot.echo + '?content=add_robot(' + index + ')';
   var script = document.createElement('script');
   script.src = url;
-  document.head.appendChild(script)
+  document.head.appendChild(script);
 }
 
 function add_robot(index) {
