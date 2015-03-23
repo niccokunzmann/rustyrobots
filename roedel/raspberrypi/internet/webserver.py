@@ -6,7 +6,10 @@ import os
 
 server_directory = os.path.dirname(__file__)
 static_directory = os.path.join(server_directory, 'static')
-robots_file = os.path.join(static_directory, "robots.json")
+robots_file_path = os.path.join('/static', "robots.json")
+robots_file = os.path.join(server_directory, 'static', "robots.json")
+
+os.system('git pull')
 
 def load_robots():
     if not os.path.isfile(robots_file):
@@ -41,6 +44,13 @@ def new_robot():
 @route('/static/<filename:path>')
 def serve_static_file(filename):
     return static_file(filename, root = static_directory)
+
+@route('/robots')
+def serve_robots():
+    response.content_type = 'application/javascript'
+    function = request.query.get('callback', 'robotsLoaded')
+    with open(robots_file) as f:
+        return "{}({})".format(function, f.read())
 
 debug(True)
 
