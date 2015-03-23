@@ -10,7 +10,7 @@ static_directory = os.path.join(server_directory, 'static')
 robots_file_path = os.path.join('/static', "robots.json")
 robots_file = os.path.join(server_directory, 'static', "robots.json")
 
-subprocess.call(['git', 'pull'])
+subprocess.call(['git', 'pull'], shell = True)
 
 def load_robots():
     if not os.path.isfile(robots_file):
