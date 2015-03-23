@@ -17,7 +17,7 @@ function getQueryParams(qs) {
 function get_robots_url() {
   var params = getQueryParams(document.location.search);
   if (params.server == null) {
-    params.server = 'rustyrobots.pythonanywhere.com';
+    params.server = DEFAULT_ROBOTS_SERVER;
   }
   return 'http://' + params.server + "/robots";
 }
@@ -50,10 +50,30 @@ function add_robot(index) {
   robot = robots[index];
   var exampleEntry = document.getElementById('exampleEntry');
   html = exampleEntry.innerHTML;
-  robot.index = index;
-  html = html.formatNamed(robot);
+  robot.index = index + "";
+  robot.url += '?overview=' + encodeURIComponent(document.location);
+  var htmlsave_robot = {};
+  var keys = Object.keys(robot);
+  for (var i = 0; i < keys.length; i++) {
+    htmlsave_robot[keys[i]] = robot[keys[i]].HTMLescape();
+  }
+  html = html.formatNamed(htmlsave_robot);
   document.getElementById('listRobots').innerHTML += html;
 }
+
+String.prototype.HTMLescape = function() {
+  // from
+  //   http://stackoverflow.com/a/5499821/1320237
+  var tagsToReplace = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;'
+  };
+  return this.replace(/[&<>]/g, function(tag) {
+    return tagsToReplace[tag] || tag;
+  });
+};
+
 
 if (!String.prototype.formatNamed) {
   // First, checks if it isn't implemented yet.

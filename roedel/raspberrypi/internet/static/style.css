@@ -1,9 +1,73 @@
 
 #exampleEntry {
-  visibility: hidden;
   height: 0px;
+  display: none;
 }
 
+.robotImage>img {
+  height: 100px;
+}
+
+.robotEntry:hover {
+  background-color: #eeeeee;
+}
+
+.robotEntry {
+  height: 100px;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+}
+
+.robotLink {
+}
+/* http://www.ssi-developer.net/css/link-colours.shtml */
+a.robotLink:link {
+  /*color: #000000;*/ 
+  text-decoration: underline; 
+}
+a.robotLink:active {
+  color: #000000; 
+  text-decoration: none; 
+}
+a.robotLink:visited {
+  color: #000000; 
+  text-decoration: underline; 
+}
+a.robotLink:hover {
+  color: #000000; 
+  text-decoration: none; 
+}
+
+/* divs in a row http://stackoverflow.com/a/2375967/1320237 */
 .robotImage {
-  height: 40px;
+  float: left;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  padding-right: 30px;
+  vertical-align: middle;
+}
+
+.robotDescription {
+  float: left;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  width: auto;
+}
+
+.robotAddress {
+
+}
+
+.content {
+  font-size: 40px;
+}
+.heading {
+  font-size: 40px;
+  margin-left: 30px;
 }
