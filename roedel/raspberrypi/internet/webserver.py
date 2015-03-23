@@ -10,8 +10,6 @@ static_directory = os.path.join(server_directory, 'static')
 robots_file_path = os.path.join('/static', "robots.json")
 robots_file = os.path.join(server_directory, 'static', "robots.json")
 
-subprocess.call(['git', 'pull'], shell = True)
-
 def load_robots():
     if not os.path.isfile(robots_file):
         return []
@@ -52,6 +50,17 @@ def serve_robots():
     function = request.query.get('callback', 'robotsLoaded')
     with open(robots_file) as f:
         return "{}({})".format(function, f.read())
+
+@route('/update')
+def update():
+    response.content_type = 'text/plain; charset=UTF8'
+    p = subprocess.Popen(
+        ['git', 'pull'],
+        stdout = subprocess.PIPE, stderr = subprocess.STDOUT,
+        cwd = server_directory)
+    stdout, stderr = p.communicate()
+    return stdout
+
 
 debug(True)
 
