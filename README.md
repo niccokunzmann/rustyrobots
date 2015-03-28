@@ -14,6 +14,7 @@ Andere Projekte
 
 - [mearm](https://github.com/niccokunzmann/mearm), ein Greifarm mit 4 Servos
 - [rotoscopes](https://github.com/niccokunzmann/rotoscopes) wenn man die Roboter schöner machen möchte und Tiere und Autos braucht
+- [Material](https://github.com/CoderDojoPotsdam/material) des Coder Dojo Potsdam
 
 Lizenz
 ------
