@@ -13,6 +13,15 @@ Benötigte Teile für einen Arduino oder Raspberry Pi:
 - Draht oder Kabel
 - Pappe oder Polisterol für eine Fläche
 - Stromversorgung
+ 	- Arduino
+		- 9V Batterie
+		- Stecker für die Batterie
+		- Stecker für Arduino Uno
+	- Raspberry Pi
+		- 9V Batterie
+		- 5V USB-Power Bank
+		- USB-B zu Micro-USB Kabel
+		- 1x Anschlusskabel an GPIO-Pin
 
 Werkzeuge:
 
