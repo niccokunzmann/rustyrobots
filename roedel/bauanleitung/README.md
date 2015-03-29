@@ -5,7 +5,7 @@ Vorbereitung
 ------------
 
 - 1x [Modelcraft RS-2 Servo](../../equipment/motoren/Modelcraft_RS-2.md) oder vergleichbar
-- 1x [ausgeschnittene Zeichnung](../roedel.svg)
+- 1x [ausgeschnittene Zeichnung](../roedel.svg) aus Holz, da Acryl zu sehr rutscht und die Räder nicht einrasten
 - optimal: Gummi für die Reifen (breite Haushaltsgummis oder Luftballon)
 
 Benötigte Teile für einen Arduino oder Raspberry Pi:
