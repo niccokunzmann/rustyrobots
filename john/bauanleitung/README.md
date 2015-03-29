@@ -15,6 +15,7 @@ Benötigte Teile für einen Arduino oder Raspberry Pi:
 - 1x [H-Brücke](../../equipment/h-bridge)
 - Draht oder Kabel
 - 1x Steckbrett für die [H-Brücke](../../equipment/h-bridge)
+- Stromversorgung
 
 Werkzeuge:
 
