@@ -14,10 +14,11 @@ Benötigte Teile für einen Arduino oder Raspberry Pi:
 
 - 1x [H-Brücke](../../equipment/h-bridge)
 - Draht oder Kabel
+- 1x Steckbrett für die [H-Brücke](../../equipment/h-bridge)
 
 Werkzeuge:
 
 - 1TL Öl (Feinmechaniköl, Sonnenblumenöl oder Olivenöl)
-- Feile 
+- Feile, um die Motorachse um 0.5mm abzuflachen
 - Kleber
 - ein Messer, wenn der Lasercutter schlecht schneidet

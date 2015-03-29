@@ -13,3 +13,5 @@ Es gibt Videos zur Steuerung mit
  - [Programmierung durch Blockly im Webinterface](https://www.youtube.com/watch?v=NBPCZgiwuP4&feature=youtu.be)
 
 Die Unterordner enthalten mehr Informationen zu den verschiedenen Möglichkeiten.
+
+[Bauanleitung](bauanleitung)

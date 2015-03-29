@@ -11,7 +11,7 @@ Vorbereitung
 Benötigte Teile für einen Arduino oder Raspberry Pi:
 
 - Draht oder Kabel
-- Pappe oder Polisterol, wenn man mehr draufbauen möchte
+- Pappe oder Polisterol für eine Fläche
 
 Werkzeuge:
 
