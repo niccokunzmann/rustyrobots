@@ -14,9 +14,8 @@ def set_servo_position_without_delay(degrees):
     # the server to control the servo
     url = 'http://{}:{}/servo_position/{}'.format(SERVOSERVER.HOST, SERVOSERVER.PORT,
                                                   degrees)
-    r = urllib.request.urlopen(url)
-    r.read()
-    r.close()
+    with urllib.request.urlopen(url) as r:
+        r.read()
 
 def sleep_until_in_position(degrees):
     global last_degrees
