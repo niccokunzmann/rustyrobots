@@ -6,18 +6,7 @@ except ImportError:
     print('RPIO not installed. Will simulate behavior.')
     RPIO_IS_PRESENT = False
 
-
-# RPIO uses GPIO pin labeling as default
-SERVO_PIN = 11
-
-# Pulse information for Modelcraft RS2 Servo
-#   http://www.servodatabase.com/servo/modelcraft/rs-2
-PULSE_CYCLE = 0.02 # seconds
-PULSE_WIDTH_MIN = 0.00054 # seconds
-PULSE_WIDTH_MAX = 0.00247 # seconds
-ROTATIONAL_RANGE = 203 # degrees
-# 0.19 sec/60°
-SERVO_ADJUSTMENT_TIME = 1 # ROTATIONAL_RANGE / 60 * 0.19 # seconds
+from configuration import SERVO
 
 if RPIO_IS_PRESENT:
     servo = None
@@ -48,19 +37,21 @@ if RPIO_IS_PRESENT:
         init_servo()
         # compute pulse width
         degrees = degrees % 360
-        if degrees > ROTATIONAL_RANGE:
-            degrees = ROTATIONAL_RANGE
-        pulse_width = PULSE_WIDTH_MIN + (PULSE_WIDTH_MAX - PULSE_WIDTH_MIN) * degrees / ROTATIONAL_RANGE
+        if degrees > SERVO.ROTATIONAL_RANGE:
+            degrees = SERVO.ROTATIONAL_RANGE
+        pulse_width = SERVO.PULSE_WIDTH_MIN + \
+                      (SERVO.PULSE_WIDTH_MAX - SERVO.PULSE_WIDTH_MIN) * degrees \
+                      / SERVO.ROTATIONAL_RANGE
 
         # pulse the servo
-        servo.set_servo(SERVO_PIN, int(pulse_width * 100000) * 10) 
+        servo.set_servo(SERVO.PIN, int(pulse_width * 100000) * 10) 
 
 else:
     def set_servo_position(degrees):
         print('set servo position to {}°.'.format(int(degrees)))
 
 def set_servo_to_middle():
-    set_servo_position(ROTATIONAL_RANGE / 2)
+    set_servo_position(SERVO.ROTATIONAL_RANGE / 2)
 
 __all__ = ['set_servo_position', 'set_servo_to_middle']
 for name in list(globals()):
