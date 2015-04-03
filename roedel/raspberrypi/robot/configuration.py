@@ -1,9 +1,16 @@
+import os
+
+def local_path(path):
+    here = os.path.dirname(__file__)
+    return os.path.join(here, path)
 
 class WEBSERVER:
 
     PORT = 8080
     HOST = ''
-    INDEX_URL = 'https://rawgit.com/niccokunzmann/blockly/master/demos/robots/index.html'
+    BLOCKLY_INDEX_URL = 'https://rawgit.com/niccokunzmann/blockly/master/demos/robots/index.html'
+    BLOCKLY_INDEX_PATH = 'demos/robots/index.html'
+    BLOCKLY_LOCAL_DIRECTORY = local_path('blockly')
     REGISTER_SERVER_URL = 'http://rustyrobots.pythonanywhere.com/new_robot'
     ROBOTER_IMAGE_URL = 'https://raw.githubusercontent.com/niccokunzmann/rustyrobots/master/roedel/versions/roedel%20v0.2.2%20arduino.jpg'
     BROADCAST_PORT = 5458
@@ -11,7 +18,7 @@ class WEBSERVER:
 class SERVOSERVER:
     
     PORT = 8081
-    HOST = 'localhost'
+    HOST = '127.0.0.1'
 
 class SERVO:
 

@@ -8,24 +8,27 @@ else:
     LOG_FILE = None
 
 import threading
-from bottle import Bottle, run, request, static_file, response, redirect, response
+from bottle import Bottle, run, request, static_file, response, redirect
+from bottle import auth_basic
 import time
 import socket
 import subprocess
 import os
 import urllib.request
 import urllib.parse
-from configuration import SERVOSERVER, WEBSERVER
+from configuration import SERVOSERVER, WEBSERVER, local_path
 from servo_client import *
 
 # broadcast
 
-def get_ip_address():
+def get_ip_address(for_local_ip = None):
+    if not for_local_ip:
+        for_local_ip = '8.8.8.8'
     ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
     # get ip address
     #  from http://stackoverflow.com/a/1267524/1320237
     try:
-        ip_sock.connect(('8.8.8.8', 80))
+        ip_sock.connect((for_local_ip, 80))
     except socket.error:
         return ''
     ip_address = ip_sock.getsockname()[0]
@@ -132,19 +135,55 @@ def echo():
 @app.route('/')
 def root():
     query = dict(request.query)
-    query['server'] = "{}:{}".format(get_ip_address(), WEBSERVER.PORT)
-    url = INDEX_URL
+    query['server'] = "{}:{}".format(get_ip_address(request.remote_addr),
+                                     WEBSERVER.PORT)
+    if os.path.exists(WEBSERVER.BLOCKLY_LOCAL_DIRECTORY):
+        url = os.path.join('/blockly/', WEBSERVER.BLOCKLY_INDEX_PATH)
+    else:
+        url = WEBSERVER.BLOCKLY_INDEX_URL
     url += '?' + urllib.parse.urlencode(query)
     redirect(url)
+
+@app.route('/blockly/<file:path>')
+def serve_blockly(file):
+    return static_file(file, root = WEBSERVER.BLOCKLY_LOCAL_DIRECTORY)
 
 @app.route('/log')
 def show_log_file():
     if LOG_FILE is None:
-        return 'Output is currently not logged.'
+        return 'Output is currently not being logged.'
     response.content_type = 'text/plain; charset=UTF8'
     sys.stdout.flush()
     sys.stderr.flush()
     return open(LOG_FILE, 'rb')
+
+# configuration
+
+def get_passwd_output(password):
+    if isinstance(password, str):
+        password = password.encode('utf8')
+    if b'\n' in password or b'\r' in password:
+        return False
+    p = subprocess.Popen(['sudo', '-u', 'pi', 'passwd', 'pi'],
+                         stdin = subprocess.PIPE,
+                         stdout = subprocess.PIPE,
+                         stderr = subprocess.STDOUT)
+    p.stdin.write(password)
+    p.stdin.close()
+    p.wait()
+    return p.stdout.read(1000)
+
+password_mismatch_output = get_passwd_output(b'0\x14\xd88\xce\x9d\xd3\x8b\xb6')
+
+def check(user, password):
+    if user != 'pi':
+        return False
+    return get_passwd_output(password) != password_mismatch_output
+
+@app.route('/configuration')
+@auth_basic(check, realm=socket.gethostname())
+def configuration():
+    return 'success!'
 
 if __name__ == '__main__':
     if not is_servo_server_present():

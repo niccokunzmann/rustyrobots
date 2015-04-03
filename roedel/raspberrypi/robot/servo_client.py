@@ -6,6 +6,7 @@ import socket
 import sys
 import os
 import subprocess
+import time
 
 last_degrees = None
 
