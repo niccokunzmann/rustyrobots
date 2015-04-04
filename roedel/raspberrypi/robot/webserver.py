@@ -180,10 +180,12 @@ def check(user, password):
         return False
     return get_passwd_output(password) != password_mismatch_output
 
+authenticate = auth_basic(check, realm=socket.gethostname())
+
 @app.route('/configuration')
-@auth_basic(check, realm=socket.gethostname())
-def configuration():
-    return 'success!'
+@app.route('/configuration/<file:path>')
+def serve_configuration(file = 'index.html'):
+    return static_file(file, root = WEBSERVER.CONFIGURATION_LOCAL_DIRECTORY)
 
 if __name__ == '__main__':
     if not is_servo_server_present():
