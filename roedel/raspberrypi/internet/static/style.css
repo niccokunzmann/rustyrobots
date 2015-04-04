@@ -25,20 +25,20 @@
 .robotLink {
 }
 /* http://www.ssi-developer.net/css/link-colours.shtml */
-a.robotLink:link {
-  /*color: #000000;*/ 
-  text-decoration: underline; 
+a:link {
+  color: #000000;
+  text-decoration: none; 
 }
-a.robotLink:active {
+a:active {
   color: #000000; 
   text-decoration: none; 
 }
-a.robotLink:visited {
+a:visited {
   color: #000000; 
-  text-decoration: underline; 
+  text-decoration: none; 
 }
-a.robotLink:hover {
-  color: #000000; 
+a:hover {
+  color: #0000fcc; 
   text-decoration: none; 
 }
 
