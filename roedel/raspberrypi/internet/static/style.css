@@ -1,4 +1,5 @@
 
+
 #exampleEntry {
   height: 0px;
   display: none;
@@ -69,5 +70,22 @@ a.robotLink:hover {
 }
 .heading {
   font-size: 40px;
-  margin-left: 30px;
+  display: inline; /* http://www.webmasterworld.com/css/3618505.htm */
+  padding-top: 21px;
+  padding-bottom: 21px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
+
+#listRobots {
+
+}
+
+#navigation {
+  padding-top: 0px;
+  padding-bottom: 9px;
+}
+
+
+
+

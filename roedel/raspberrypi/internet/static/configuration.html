@@ -6,15 +6,16 @@
     <script src="defaults.js"> </script>
     <script src="common.js"> </script>
     <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="index.css"/>
-    <script src="index.js"> </script>
-    <title>Rusty Robots:</title>
+    <link rel="stylesheet" href="configuration.css"/>
+    <script src="configuration.js"> </script>
+    <title>Configuration</title>
   </head>
   <body>
     <div class="content">
       <div id="exampleEntry">
-        <a href="{url}" class="robotLink">
+        <a href="{toggleRobot}" class="robotLink" id="{robotLinkId}">
           <div class="robotEntry">
+            <div class="robotSelectionImage"></div>
             <div class="robotImage">
               <img src="{image}" />
             </div>

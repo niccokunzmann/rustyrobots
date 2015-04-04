@@ -1,0 +1,17 @@
+/* http://www.w3schools.com/cssref/tryit.asp?filename=trycss_content_url */
+.robotSelectionImage {
+  height: 100px;
+  width: 100px;
+  background-position: 0px 0px;
+  background-image: url(selection.png);
+  float: left;
+  margin-right: 30px;
+}
+.selectedRobot .robotSelectionImage {
+  background-position: -100px 0px;
+}
+
+
+#configuration_heading {
+  background-color: #eeeeee;
+}

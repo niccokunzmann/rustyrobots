@@ -16,10 +16,10 @@ function getQueryParams(qs) {
 
 function get_robots_url() {
   var params = getQueryParams(document.location.search);
-  if (params.overview == null) {
-    params.overview = DEFAULT_ROBOTS_SERVER;
+  if (params.server == null) {
+    params.server= DEFAULT_ROBOTS_SERVER;
   }
-  return 'http://' + params.overview + "/robots";
+  return 'http://' + params.server + "/robots";
 }
 
 var robots = [];
@@ -73,6 +73,25 @@ if (!String.prototype.formatNamed) {
       return match;
     });
   };
+}
+
+function add_robot(index) {
+  var robot = robots[index];
+  if (robot.added) {
+    return;
+  }
+  robot.added = true;
+  robot.index = index + "";
+  configure_robot_before_add(robot);
+  var exampleEntry = document.getElementById('exampleEntry');
+  html = exampleEntry.innerHTML;
+  var htmlsave_robot = {};
+  var keys = Object.keys(robot);
+  for (var i = 0; i < keys.length; i++) {
+    htmlsave_robot[keys[i]] = (robot[keys[i]] + '').HTMLescape();
+  }
+  html = html.formatNamed(htmlsave_robot);
+  document.getElementById('listRobots').innerHTML += html;
 }
 
 window.addEventListener('load', load_robots);
