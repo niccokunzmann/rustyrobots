@@ -211,6 +211,8 @@ def callback_function(function):
             query.pop('callback_function', None)
             query.update(kw)
             result = function(*args, **query)
+            if not isinstance(result, str):
+                result = result.decode('utf-8')
         except Exception as e:
             file = io.StringIO()
             traceback.print_exc(file = file)
@@ -245,6 +247,15 @@ def restart():
 @authenticate
 @callback_function
 def update():
+    github_key = subprocess.check_output(["ssh-keyscan", "-H", "github.com"],
+                                   stdin = subprocess.PIPE,
+                                   stderr = subprocess.STDOUT ,
+                                   cwd = os.path.dirname(__file__))
+    known_hosts_file = "/home/pi/.ssh/known_hosts"
+    if not os.path.isfile(known_hosts_file) or \
+       not any(github_key in line for line in open(known_hosts_file, 'rb')):
+        with open(known_hosts_file, "ab") as f:
+            f.write(github_key + b'\n')
     command = ["ssh-agent", "bash", "-c", "ssh-add /home/pi/.ssh/id_rsa; git pull origin master"]
     return subprocess.check_output(command,
                                    stdin = subprocess.PIPE,
