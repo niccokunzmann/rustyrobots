@@ -14,7 +14,6 @@
 }
 
 .robotEntry {
-  height: 100px;
   padding-top: 21px;
   padding-bottom: 21px;
   padding-left: 30px;
@@ -38,27 +37,23 @@ a:visited {
   text-decoration: none; 
 }
 a:hover {
-  color: #0000fcc; 
+  color: #0000cc; 
   text-decoration: none; 
 }
 
 /* divs in a row http://stackoverflow.com/a/2375967/1320237 */
 .robotImage {
-  float: left;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
+  display: inline-block; /* http://www.webmasterworld.com/css/3618505.htm */
   padding-right: 30px;
   vertical-align: middle;
+  height: 100px;
 }
 
 .robotDescription {
-  float: left;
-  height: 100%;
+  display: inline-block; /* http://www.webmasterworld.com/css/3618505.htm */
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
-  width: auto;
 }
 
 .robotAddress {
@@ -68,13 +63,15 @@ a:hover {
 .content {
   font-size: 40px;
 }
+
 .heading {
   font-size: 40px;
-  display: inline; /* http://www.webmasterworld.com/css/3618505.htm */
+  display: inline-block; /* http://www.webmasterworld.com/css/3618505.htm */
+  padding-right: 30px;
+  padding-left: 30px;
   padding-top: 21px;
   padding-bottom: 21px;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin: 0px;
 }
 
 #listRobots {
@@ -86,6 +83,21 @@ a:hover {
   padding-bottom: 9px;
 }
 
+.section {
+  padding-bottom: 21px;
+  padding-top: 21px;
+}
 
+.even {
 
+}
+
+.odd {
+  background-color: #eeeeee;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
 

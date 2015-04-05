@@ -158,20 +158,23 @@ def show_log_file():
     return open(LOG_FILE, 'rb')
 
 # configuration
-
-def get_passwd_output(password):
-    if isinstance(password, str):
-        password = password.encode('utf8')
-    if b'\n' in password or b'\r' in password:
-        return False
-    p = subprocess.Popen(['sudo', '-u', 'pi', 'passwd', 'pi'],
-                         stdin = subprocess.PIPE,
-                         stdout = subprocess.PIPE,
-                         stderr = subprocess.STDOUT)
-    p.stdin.write(password)
-    p.stdin.close()
-    p.wait()
-    return p.stdout.read(1000)
+if os.name == 'nt':
+    def get_passwd_output(password):
+        return None
+else:
+    def get_passwd_output(password):
+        if isinstance(password, str):
+            password = password.encode('utf8')
+        if b'\n' in password or b'\r' in password:
+            return False
+        p = subprocess.Popen(['sudo', '-u', 'pi', 'passwd', 'pi'],
+                             stdin = subprocess.PIPE,
+                             stdout = subprocess.PIPE,
+                             stderr = subprocess.PIPE)
+        p.stdin.write(password)
+        p.stdin.close()
+        p.wait()
+        return p.stdout.read(1000)
 
 password_mismatch_output = get_passwd_output(b'0\x14\xd88\xce\x9d\xd3\x8b\xb6')
 
