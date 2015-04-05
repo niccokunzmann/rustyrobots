@@ -245,7 +245,8 @@ def restart():
 @authenticate
 @callback_function
 def update():
-    return subprocess.check_output(['git', 'pull'],
+    command = ["ssh-agent", "bash", "-c", "ssh-add /home/pi/.ssh/id_rsa; git pull origin master"]
+    return subprocess.check_output(command,
                                    stdin = subprocess.PIPE,
                                    stderr = subprocess.STDOUT ,
                                    cwd = os.path.dirname(__file__))
