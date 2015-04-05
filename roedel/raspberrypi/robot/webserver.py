@@ -21,6 +21,7 @@ from servo_client import *
 import json
 import traceback
 import io
+import re
 
 # broadcast
 
@@ -230,9 +231,19 @@ def callback_function(function):
 def add_wifi(ssid = "", password = ""):
     assert ssid, "ssid must not be empty"
     assert len(ssid) <= 255, "ssid can have at most 255 characters"
+    assert "\n" not in ssid, "ssid must not contain newline"
     result = "\"{}\" added".format(ssid)
     if password:
+        assert len(password) <= 255, "password can have at most 255 characters"
+        assert "\n" not in password, "password must not contain newline"
         result += " with password"
+    wpa_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
+    assert os.path.isfile(wpa_file), "\"{}\" does not exist".format(wpa_file)
+    with open(wpa_file, "a", encoding = "cp1252") as f:
+        f.write("\nnetwork={\n\tssid=\"{}\"".format(ssid))
+        if password:
+            f.write("\n\tpsk=\"{}\"".format(password))
+        f.write("\n}\n")
     return result
 
 @app.route('/restart')
