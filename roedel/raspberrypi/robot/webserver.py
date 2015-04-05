@@ -274,7 +274,7 @@ def rename(hostname = ""):
     old_hostname = socket.gethostname()
     assert os.path.isfile(hostname_file_path), "\"{}\" does not exist".format(hostname_file_path)
     with open(hostname_file_path, 'w') as f:
-        f.write(hostname)
+        f.write(hostname + "\n")
     return '"{}" => "{}"'.format(old_hostname, hostname)
     
 
