@@ -38,8 +38,13 @@ input.wifi {
 }
 
 #configurationOptions {
+}
+
+.configurationOption {
     padding-left: 30px;
     padding-right: 30px;
+    padding-top: 21px;
+    padding-bottom: 21px;
 }
 
 .configurationOptionHeading {
@@ -55,4 +60,8 @@ input.wifi {
 
 .rightFiller {
 	width: 100%;
+}
+
+.fullButton {
+  width: 100%;
 }

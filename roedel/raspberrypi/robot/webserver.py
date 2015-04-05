@@ -18,6 +18,9 @@ import urllib.request
 import urllib.parse
 from configuration import SERVOSERVER, WEBSERVER, local_path
 from servo_client import *
+import json
+import traceback
+import io
 
 # broadcast
 
@@ -63,7 +66,12 @@ def register_server():
         robot = dict(
             ip = ip, port = WEBSERVER.PORT, name = socket.gethostname(),
             url = url, echo = url + '/echo',
-            image = WEBSERVER.ROBOTER_IMAGE_URL)
+            image = WEBSERVER.ROBOTER_IMAGE_URL,
+            add_wifi = url + '/add_wifi',
+            restart = url + '/restart',
+            update = url + '/update',
+            rename = url + '/rename',
+            )
         query = WEBSERVER.REGISTER_SERVER_URL + '?' + urllib.parse.urlencode(robot)
         try:
             with urllib.request.urlopen(query) as f:
@@ -160,7 +168,7 @@ def show_log_file():
 # configuration
 if os.name == 'nt':
     def get_passwd_output(password):
-        return None
+        return password == 'raspberry'
 else:
     def get_passwd_output(password):
         if isinstance(password, str):
@@ -170,7 +178,7 @@ else:
         p = subprocess.Popen(['sudo', '-u', 'pi', 'passwd', 'pi'],
                              stdin = subprocess.PIPE,
                              stdout = subprocess.PIPE,
-                             stderr = subprocess.PIPE)
+                             stderr = subprocess.STDOUT)
         p.stdin.write(password)
         p.stdin.close()
         p.wait()
@@ -185,10 +193,78 @@ def check(user, password):
 
 authenticate = auth_basic(check, realm=socket.gethostname())
 
-@app.route('/configuration')
-@app.route('/configuration/<file:path>')
-def serve_configuration(file = 'index.html'):
-    return static_file(file, root = WEBSERVER.CONFIGURATION_LOCAL_DIRECTORY)
+def callback(*arguments):
+    callback_function = request.query.get('callback_function')
+    if callback_function:
+        response.content_type = 'application/javascript'
+        result = "{}({})".format(callback_function,
+                                 ", ".join(map(json.dumps, arguments)))
+    else:
+        response.content_type = 'text/plain'
+        result = "\n".join(map(str, arguments))
+    return result
+
+def callback_function(function):
+    def callback_function(*args, **kw):
+        try:
+            query = dict(request.query)
+            query.pop('callback_function', None)
+            query.update(kw)
+            result = function(*args, **query)
+        except Exception as e:
+            file = io.StringIO()
+            traceback.print_exc(file = file)
+            file.seek(0)
+            error = file.read()
+            sys.stderr.write(error)
+            return callback('error', error)
+        else:
+            return callback('ok', result)
+    return callback_function
+
+@app.route('/add_wifi')
+@authenticate
+@callback_function
+def add_wifi(ssid = "", password = ""):
+    assert ssid, "ssid must not be empty"
+    assert len(ssid) <= 255, "ssid can have at most 255 characters"
+    result = "\"{}\" added".format(ssid)
+    if password:
+        result += " with password"
+    return result
+
+@app.route('/restart')
+@authenticate
+@callback_function
+def restart():
+    return subprocess.check_output(['shutdown', '-r', '0'],
+                                   stdin = subprocess.PIPE,
+                                   stderr = subprocess.STDOUT)
+    
+@app.route('/update')
+@authenticate
+@callback_function
+def update():
+    return subprocess.check_output(['git', 'pull'],
+                                   stdin = subprocess.PIPE,
+                                   stderr = subprocess.STDOUT ,
+                                   cwd = os.path.dirname(__file__))
+    
+@app.route('/rename')
+@authenticate
+@callback_function
+def rename(hostname = ""):
+    assert all(character.lower() in "-123457890abcdefghijklmnopqrstuvwxyz"
+               for character in hostname), "can only contain numbers 0-9 letters a-z and A-Z and the hyphen \"-\""
+    assert 1 <= len(hostname), "hostname must not be empty"
+    assert len(hostname) <= 255, "hostname can have at most 255 characters"
+    hostname_file_path = '/etc/hostname'
+    old_hostname = socket.gethostname()
+    assert os.path.isfile(hostname_file_path), "\"{}\" does not exist".format(hostname_file_path)
+    with open(hostname_file_path, 'w') as f:
+        f.write(hostname)
+    return '"{}" => "{}"'.format(old_hostname, hostname)
+    
 
 if __name__ == '__main__':
     if not is_servo_server_present():

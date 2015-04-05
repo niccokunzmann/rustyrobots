@@ -12,8 +12,7 @@ class WEBSERVER:
     BLOCKLY_INDEX_PATH = 'demos/robots/index.html'
     BLOCKLY_LOCAL_DIRECTORY = local_path('blockly')
     REGISTER_SERVER_URL = 'http://rustyrobots.pythonanywhere.com/new_robot'
-    ROBOTER_IMAGE_URL = 'https://raw.githubusercontent.com/niccokunzmann/rustyrobots/master/roedel/versions/roedel%20v0.2.2%20arduino.jpg'
-    CONFIGURATION_LOCAL_DIRECTORY = local_path('configuration')
+    ROBOTER_IMAGE_URL = 'https://raw.githubusercontent.com/CoderDojoPotsdam/material/master/roboter/roedelmitraspberrypi/roedelmitraspberrypi.jpg'
     BROADCAST_PORT = 5458
 
 class SERVOSERVER:

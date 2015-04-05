@@ -32,8 +32,8 @@
       </div>
       <div id="listRobots" class="section even">
       </div>
-      <div id="configurationOptions" class="section odd">
-        <div class="configurationOption" id="wifi">
+      <div id="configurationOptions" class="section">
+        <div class="configurationOption odd" id="wifi">
           <div class="field">
             <div class="configurationOptionHeading" id="ssid_heading">
               SSID:
@@ -46,10 +46,25 @@
             <input type="input" id="wifi_password" class="wifi" /> 
           </div>
           <div class="rightFiller">
-            <input type="button" value="add" id="add_wifi_button">
+            <input type="button" value="add" id="add_wifi_button" onclick="javascript:add_wifi_robot()">
           </div>
         </div>
-        <div class="configurationOption" id="wifi">
+        <div class="configurationOption even" id="restart">
+          <input type="button" value="restart" class="fullButton" id="restart_button" onclick="javascript:restart_robot()">
+        </div>
+        <div class="configurationOption odd" id="update">
+          <input type="button" value="update" class="fullButton" id="update_button" onclick="javascript:update_robot()">
+        </div>
+        <div class="configurationOption even" id="rename">
+          <div class="field">
+            <div class="configurationOptionHeading" id="hostname_heading">
+              hostname:
+            </div>
+            <input type="input" id="robot_hostname" class="wifi" /> 
+          </div>
+          <div class="rightFiller">
+            <input type="button" value="rename" id="rename_button" onclick="javascript:rename_robot()">
+          </div>
         </div>
       </div>
     </div>
