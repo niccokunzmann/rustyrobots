@@ -101,6 +101,13 @@ function add_wifi_robot() {
   execute_path_on_selected_robots('add_wifi', arguments);
 }
 
+function remove_wifi_robot() {
+  var arguments = {
+    "ssid": document.getElementById('wifi_ssid').value,
+  };
+  execute_path_on_selected_robots('remove_wifi', arguments);
+}
+
 function restart_robot() {
   execute_path_on_selected_robots('restart', {});
 }

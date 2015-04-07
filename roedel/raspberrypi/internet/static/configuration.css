@@ -31,7 +31,7 @@ input[type="input"]
 input.wifi {
 }
 
-#add_wifi_button {
+.wifi_button {
   height: 100px;
   padding-left: 30px;
   padding-right: 30px;
