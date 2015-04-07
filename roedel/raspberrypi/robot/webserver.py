@@ -69,10 +69,11 @@ def register_server():
             url = url, echo = url + '/echo',
             image = WEBSERVER.ROBOTER_IMAGE_URL,
             add_wifi = url + '/add_wifi',
+            remove_wifi = url + '/remove_wifi',
             restart = url + '/restart',
+            shutdown = url + '/shutdown',
             update = url + '/update',
             rename = url + '/rename',
-            remove_wifi = url + '/remove_wifi',
             )
         query = WEBSERVER.REGISTER_SERVER_URL + '?' + urllib.parse.urlencode(robot)
         try:
@@ -269,7 +270,15 @@ def restart():
     return subprocess.check_output(['shutdown', '-r', '0'],
                                    stdin = subprocess.PIPE,
                                    stderr = subprocess.STDOUT)
-    
+
+@app.route('/shutdown')
+@authenticate
+@callback_function
+def shutdown():
+    return subprocess.check_output(['shutdown', 'now'],
+                                   stdin = subprocess.PIPE,
+                                   stderr = subprocess.STDOUT)    
+
 @app.route('/update')
 @authenticate
 @callback_function
