@@ -240,7 +240,7 @@ def add_wifi(ssid = "", password = ""):
     wpa_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
     assert os.path.isfile(wpa_file), "\"{}\" does not exist".format(wpa_file)
     with open(wpa_file, "a", encoding = "cp1252") as f:
-        f.write("\nnetwork={\n\tssid=\"{}\"".format(ssid))
+        f.write("\nnetwork={{\n\tssid=\"{}\"".format(ssid))
         if password:
             f.write("\n\tpsk=\"{}\"".format(password))
         f.write("\n}\n")
