@@ -72,6 +72,7 @@ def register_server():
             restart = url + '/restart',
             update = url + '/update',
             rename = url + '/rename',
+            remove_wifi = url + '/remove_wifi',
             )
         query = WEBSERVER.REGISTER_SERVER_URL + '?' + urllib.parse.urlencode(robot)
         try:
@@ -225,6 +226,8 @@ def callback_function(function):
             return callback('ok', result)
     return callback_function
 
+wpa_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
+
 @app.route('/add_wifi')
 @authenticate
 @callback_function
@@ -237,7 +240,6 @@ def add_wifi(ssid = "", password = ""):
         assert len(password) <= 255, "password can have at most 255 characters"
         assert "\n" not in password, "password must not contain newline"
         result += " with password"
-    wpa_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
     assert os.path.isfile(wpa_file), "\"{}\" does not exist".format(wpa_file)
     with open(wpa_file, "a", encoding = "cp1252") as f:
         f.write("\nnetwork={{\n\tssid=\"{}\"".format(ssid))
@@ -245,6 +247,20 @@ def add_wifi(ssid = "", password = ""):
             f.write("\n\tpsk=\"{}\"".format(password))
         f.write("\n}\n")
     return result
+
+@app.route('/remove_wifi')
+@authenticate
+@callback_function
+def remove_wifi(ssid = ""):
+    escaped_ssid = re.escape(ssid.encode("cp1252"))
+    pattern = b'\nnetwork\s*=\s*{\s*ssid\s*=\s*"' + escaped_ssid + b'"(?:[^\}]|[^\n]\})*\n\}\n?'
+    with open(wpa_file, 'rb') as f:
+        current_networks = f.read()
+    new_networks = re.sub(pattern, b'', current_networks)
+    assert isinstance(new_networks, bytes)
+    with open(wpa_file, 'wb') as f:
+        f.write(new_networks)
+    return "removed all \"{}\"".format(ssid)
 
 @app.route('/restart')
 @authenticate
