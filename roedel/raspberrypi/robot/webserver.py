@@ -48,7 +48,7 @@ def broadcast_loop():
         message = "Der Roedelroboter kann unter {}:{} gesteuert werden.".format(
                                 ip_address, WEBSERVER.PORT).encode('UTF-8')
         sock.sendto(message, ('<broadcast>', WEBSERVER.BROADCAST_PORT))
-        time.sleep(1)
+        time.sleep(5)
 
 
 broadcast_thread = threading.Thread(target = broadcast_loop)
@@ -285,10 +285,7 @@ def shutdown():
                                    stdin = subprocess.PIPE,
                                    stderr = subprocess.STDOUT)    
 
-@app.route('/update')
-@authenticate
-@callback_function
-def update():
+def git_pull(directory):
     github_key = subprocess.check_output(["ssh-keyscan", "-H", "github.com"],
                                    stdin = subprocess.PIPE,
                                    stderr = subprocess.STDOUT ,
@@ -300,9 +297,18 @@ def update():
             f.write(github_key + b'\n')
     command = ["ssh-agent", "bash", "-c", "ssh-add /home/pi/.ssh/id_rsa; git pull origin master"]
     return subprocess.check_output(command,
-                                   stdin = subprocess.PIPE,
-                                   stderr = subprocess.STDOUT ,
-                                   cwd = os.path.dirname(__file__))
+                                     stdin = subprocess.PIPE,
+                                     stderr = subprocess.STDOUT ,
+                                     cwd = directory)
+
+@app.route('/update')
+@authenticate
+@callback_function
+def update():
+    result = git_pull(os.path.dirname(__file__))
+    if os.path.isdir(WEBSERVER.BLOCKLY_LOCAL_DIRECTORY):
+        result += b"\nblockly:\n" + git_pull(WEBSERVER.BLOCKLY_LOCAL_DIRECTORY)
+    return result
     
 @app.route('/rename')
 @authenticate
