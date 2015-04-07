@@ -57,12 +57,10 @@ broadcast_thread.start()
 
 current_subprocess = None
 
-def register_server():
-    while 1:
+def get_robot_information():
         ip = get_ip_address()
         if not ip:
-            time.sleep(5)
-            continue
+            return
         url = 'http://{}:{}'.format(ip, WEBSERVER.PORT)
         robot = dict(
             ip = ip, port = WEBSERVER.PORT, name = socket.gethostname(),
@@ -75,6 +73,14 @@ def register_server():
             update = url + '/update',
             rename = url + '/rename',
             )
+        return robot
+
+def register_server():
+    while 1:
+        robot = get_robot_information()
+        if not robot:
+            time.sleep(5)
+            continue
         query = WEBSERVER.REGISTER_SERVER_URL + '?' + urllib.parse.urlencode(robot)
         try:
             with urllib.request.urlopen(query) as f:
@@ -313,6 +319,10 @@ def rename(hostname = ""):
         f.write(hostname + "\n")
     return '"{}" => "{}"'.format(old_hostname, hostname)
     
+@app.route('/information')
+def get_information():
+    response.content_type = "application/json; charset=UTF8"
+    return get_robot_information()
 
 if __name__ == '__main__':
     if not is_servo_server_present():
