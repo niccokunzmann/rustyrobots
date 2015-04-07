@@ -93,6 +93,22 @@ function execute_path_on_selected_robots(attribute, parameters, callback) {
   }
 }
 
+function formatted_robot_names() {
+  var selected_robots = get_selected_robots();
+  if (selected_robots.length == 0) {
+    return "";
+  } else if (selected_robots.length == 1) {
+    return selected_robots[0].name + "";
+  } 
+  var s = "";
+  for (var i = 0; i < selected_robots.length - 2; i++) {
+    s += selected_robots[i].name + ", ";
+  }
+  s += selected_robots[selected_robots.length - 2].name + ' and ' + 
+       selected_robots[selected_robots.length - 1].name;
+  return s;
+}
+
 function add_wifi_robot() {
   var arguments = {
     "ssid": document.getElementById('wifi_ssid').value,
@@ -112,6 +128,15 @@ function restart_robot() {
   execute_path_on_selected_robots('restart', {});
 }
 
+function shutdown_robot() {
+  if (!get_selected_robots()) {
+    return;
+  }
+  if (confirm("Really shutdown " + formatted_robot_names() + "?")) {
+    execute_path_on_selected_robots('shutdown', {});
+  }
+}
+
 function update_robot() {
   execute_path_on_selected_robots('update', {});
 }
@@ -122,3 +147,13 @@ function rename_robot() {
   };
   execute_path_on_selected_robots('rename', parameters);
 }
+
+function mark_configuration_options() {
+  var options = document.getElementsByClassName("configurationOption");
+  for (var i = 0; i < options.length; i++) {
+    options[i].classList.add(i & 1 ? "even" : "odd");
+  }
+}
+
+window.addEventListener('load', mark_configuration_options);
+

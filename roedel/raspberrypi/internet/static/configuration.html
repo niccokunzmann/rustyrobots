@@ -30,10 +30,10 @@
           </div>
         </a>
       </div>
-      <div id="listRobots" class="section even">
+      <div id="listRobots" class="section">
       </div>
       <div id="configurationOptions" class="section">
-        <div class="configurationOption odd" id="wifi">
+        <div class="configurationOption" id="wifi">
           <div class="field">
             <div class="configurationOptionHeading" id="ssid_heading">
               SSID:
@@ -50,13 +50,16 @@
             <input type="button" value="remove" id="remove_wifi_button" class="wifi_button" onclick="javascript:remove_wifi_robot()">
           </div>
         </div>
-        <div class="configurationOption even" id="restart">
+        <div class="configurationOption" id="restart">
           <input type="button" value="restart" class="fullButton" id="restart_button" onclick="javascript:restart_robot()">
         </div>
-        <div class="configurationOption odd" id="update">
+        <div class="configurationOption" id="shutdown">
+          <input type="button" value="shutdown" class="fullButton" id="shutdown_button" onclick="javascript:shutdown_robot()">
+        </div>
+        <div class="configurationOption" id="update">
           <input type="button" value="update" class="fullButton" id="update_button" onclick="javascript:update_robot()">
         </div>
-        <div class="configurationOption even" id="rename">
+        <div class="configurationOption" id="rename">
           <div class="field">
             <div class="configurationOptionHeading" id="hostname_heading">
               hostname:
