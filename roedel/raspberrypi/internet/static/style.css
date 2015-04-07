@@ -101,3 +101,8 @@ body {
   padding: 0px;
 }
 
+/* http://stackoverflow.com/questions/8083430/how-to-change-the-font-and-font-size-of-an-html-input-tag */
+input
+{
+  font-size:40px;
+}

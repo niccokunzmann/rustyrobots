@@ -27,18 +27,20 @@ def save_robots(robots):
 def hello_world():
     redirect('/static/index.html')
 
+def add_robot(robot):
+    robots = load_robots()
+    result = robot not in robots
+    if result:
+        robots.insert(0, robot)
+    save_robots(robots)
+    return result
+
 @route('/new_robot')
 def new_robot():
     response.content_type = 'text/plain; charset=UTF8'
-    robots = load_robots()
-    robot = dict(request.query)
-    if robot not in robots:
-        robots.insert(0, robot)
-        result = "successfully registered:\n\t" + "\n\t".join("{}:{}".format(key, value) for key, value in sorted(robot.items()))
-    else:
-        result = "robot is known"
-    save_robots(robots)
-    return result
+    if add_robot(dict(request.query)):
+        return "successfully registered:\n\t" + "\n\t".join("{}:{}".format(key, value) for key, value in sorted(robot.items()))
+    return "robot is known"
 
 @route('/static/<filename:path>')
 def serve_static_file(filename):
