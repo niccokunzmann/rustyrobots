@@ -129,7 +129,7 @@ function restart_robot() {
 }
 
 function shutdown_robot() {
-  if (!get_selected_robots()) {
+  if (!get_selected_robots().length) {
     return;
   }
   if (confirm("Really shutdown " + formatted_robot_names() + "?")) {
