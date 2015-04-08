@@ -2,9 +2,9 @@
 function get_robots_url() {
   var params = getQueryParams(document.location.search);
   if (params.server == null) {
-    params.server= DEFAULT_ROBOTS_SERVER;
+    params.server = DEFAULT_ROBOTS_SERVER;
   }
-  return 'http://' + params.server + "/robots";
+  return params.server + "/robots";
 }
 
 var robots = [];

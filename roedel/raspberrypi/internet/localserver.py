@@ -11,7 +11,15 @@ import re
 from bottle import run, redirect
 from webserver import application as app
 
-PORT = 8079
+s = socket.socket()
+try:
+    s.bind(("", 80))
+except:
+    PORT = 8079
+else:
+    PORT = 80
+finally:
+    s.close()
 
 
 def listen_for_robots():
@@ -68,7 +76,8 @@ def get_addresses():
         ip = get_ip_address()
         if not ip:
             ipv4 = ['localhost']
-    hostnames = ["http://{}:{}/".format(host, PORT) for host in ipv4 + [name]]
+    port = ("" if PORT == 80 else ":{}".format(PORT))
+    hostnames = ["http://{}{}".format(host, port) for host in ipv4 + [name]]
     return "add_addresses({})".format(json.dumps(hostnames))
 
 @app.route("/local")

@@ -1,5 +1,6 @@
 
-DEFAULT_ROBOTS_SERVER = 'rustyrobots.pythonanywhere.com';
+/*'http://rustyrobots.pythonanywhere.com'*/
+DEFAULT_ROBOTS_SERVER = "";
 
 HEADING_TEMPLATE = '\
     \
