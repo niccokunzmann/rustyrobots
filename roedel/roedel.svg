@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="8"
-     inkscape:cx="217.31381"
-     inkscape:cy="56.540948"
+     inkscape:zoom="1"
+     inkscape:cx="111.69888"
+     inkscape:cy="216.38324"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1054,7 +1054,7 @@
     <g
        id="g3354"
        style="display:inline"
-       transform="translate(-16.16692,-322.23277)">
+       transform="matrix(0.99678243,0.08015474,-0.08015474,0.99678243,23.125357,-337.98549)">
       <path
          id="path3356"
          transform="translate(87.71565,-132.99117)"
@@ -1103,7 +1103,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="translate(-16.790075,-555.52049)"
+       transform="matrix(0.99970371,0.02434126,-0.02434126,0.99970371,-5.6144949,-560.72237)"
        style="display:inline"
        id="g3296">
       <path
