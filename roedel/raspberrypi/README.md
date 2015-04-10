@@ -20,10 +20,9 @@ Funktionsweise
 Die App sendet die Servoposition an den Webserver, der auf dem Raspberry PI läuft. Dieser setzt die Position des Servos. [RPIO](http://pythonhosted.org/RPIO/pwm_py.html) wird genutzt zur Steurung des Servos. Der GPIO-Pin 11 wird genutzt. Wo man die Pins findet, steht [hier](http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/). Der Servo hat eine extra Batterie und die beiden Grounds (Masse oder Minus -) des RaspberryPi und der Batterie müssen verbunden werden. Nicht die beiden positiven Spannungen verbinden! Dadurch kann der Servo von Pin 23 angepulst werden.
 
 Installation
-------------
+============
 
-Der Webserver braucht das Modul `bottle`. 
-Das kann man mit `pip-3.2 install bottle` installieren. Das `RPIO`-Modul wird auch benutzt. Mit `pip-3.2 install RPIO` kann es installiert werden. 
+Die Datei [`download_and_install.sh`](robot/download_and_install.sh) kann auf dem Raspberry Pi ausgeführt werden. Wenn dieser Internetzugriff hat, wird der Webserver automatisch installiert.
 
 Alte Verweise
 -------------
