@@ -21,13 +21,18 @@ else:
 finally:
     s.close()
 
+listed = set()
 
 def listen_for_robots():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_IP)
     s.bind(('', 5458))
     while 1:
         try:
-            message = s.recv(1024).decode('UTF-8')
+            message = s.recv(1024)
+            if message in listed:
+                continue
+            listed.add(message)
+            message = message.decode('UTF-8')
             addresses = re.findall('\d{1,3}(?:\.\d{1,3}){3}(?::\d{1,5})', message)
             if addresses:
                 address = addresses[0]
