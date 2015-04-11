@@ -36,16 +36,8 @@ def listen_for_robots():
             addresses = re.findall('\d{1,3}(?:\.\d{1,3}){3}(?::\d{1,5})', message)
             if addresses:
                 address = addresses[0]
-                information_url = "http://{}/information".format(address)
-                with urllib.request.urlopen(information_url) as f:
-                    information_json = f.read()
-                    charset = f.headers.get_charset()
-                    if charset:
-                        information_json = information_json.decode(charset)
-                    else:
-                        information_json = information_json.decode("ASCII")
-                information = json.loads(information_json)
-                webserver.add_robot(information)
+                information_url = "http://{}/information.js".format(address)
+                webserver.add_robot(dict(information_javascript = information_url))
         except:
             traceback.print_exc()
 

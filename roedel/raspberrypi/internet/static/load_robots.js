@@ -16,19 +16,17 @@ function load_robots() {
 }
 
 function robotsLoaded(new_robots) {
-  robots = new_robots;
-  for (var i = 0; i < robots.length; i+= 1) {
-    robot = robots[i];
-    check_robot(robot, i);
+  for (var i = 0; i < new_robots.length; i++) {
+    check_robot(new_robots[i]);
   }
 }
 
-function check_robot(robot, index) {
-  if (robot.echo == null) return;
-  url = robot.echo + '?content=add_robot(' + index + ')';
-  var script = document.createElement('script');
-  script.src = url;
-  document.head.appendChild(script);
+function check_robot(robot) {
+  if (robot.information_javascript) {
+    var script = document.createElement('script');
+    script.src = robot.information_javascript;
+    document.head.appendChild(script);
+  } 
 }
 
 function add_robot(index) {
@@ -38,7 +36,9 @@ function add_robot(index) {
   }
   robot.added = true;
   robot.index = index + "";
-  configure_robot_before_add(robot);
+  if (configure_robot_before_add) {
+    configure_robot_before_add(robot);
+  }
   var exampleEntry = document.getElementById('exampleEntry');
   html = exampleEntry.innerHTML;
   var htmlsave_robot = {};
@@ -48,6 +48,16 @@ function add_robot(index) {
   }
   html = html.formatNamed(htmlsave_robot);
   document.getElementById('listRobots').innerHTML += html;
+}
+
+function add_robot_information(robot) {
+  for (var i = 0; i < robots.length; i++) {
+    if (robots[i].id == robot.id) {
+      return;
+    }    
+  }
+  robots.push(robot);
+  add_robot(robots.indexOf(robot));
 }
 
 window.addEventListener('load', load_robots);
