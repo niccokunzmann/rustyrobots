@@ -2,7 +2,7 @@ Rödel mit Blockly Programmieren
 ===============================
 
 Es gibt ein [Video](https://www.youtube.com/watch?v=NBPCZgiwuP4&feature=youtu.be), wie der Rödel Roboter mit Blockly programmiert wird.
-Auf der Webseite [rustyrobots.pythonanywhere.com](rustyrobots.pythonanywhere.com) werden die erreichbaren Roboter gelistet. 
+Auf der Webseite [rustyrobots.pythonanywhere.com](http://rustyrobots.pythonanywhere.com) werden die erreichbaren Roboter gelistet. 
 Sourcecode wird an den Roboter geschickt oder im Browser ausgeführt, dank [Blockly](https://developers.google.com/blockly/).
 
 
