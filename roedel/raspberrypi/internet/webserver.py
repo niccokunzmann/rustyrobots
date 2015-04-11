@@ -48,7 +48,7 @@ def serve_static_file(filename):
 
 @route('/robots')
 def serve_robots():
-    response.content_type = 'application/javascript'
+    response.content_type = 'application/javascript; charset=UTF8'
     function = request.query.get('callback', 'robotsLoaded')
     with open(robots_file) as f:
         return "{}({})".format(function, f.read())
