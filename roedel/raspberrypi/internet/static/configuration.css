@@ -60,3 +60,8 @@ input.wifi {
 .fullButton {
   width: 100%;
 }
+
+#preview_image {
+  margin-left: 30px;
+  vertical-align: top;
+}

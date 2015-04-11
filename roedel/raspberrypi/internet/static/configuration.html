@@ -64,12 +64,24 @@
             <div class="configurationOptionHeading" id="hostname_heading">
               hostname:
             </div>
-            <input type="input" id="robot_hostname" class="wifi" /> 
+            <input type="input" id="robot_hostname"/> 
           </div>
           <div class="rightFiller">
             <input type="button" value="rename" id="rename_button" onclick="javascript:rename_robot()">
           </div>
         </div>
+        <div class="configurationOption" id="image">
+          <div class="field">
+            <div class="configurationOptionHeading" id="image_heading">
+              image:
+            </div>
+            <input type="input" id="robot_image" onkeyup="javascript:refresh_preview_image()" value="https://raw.githubusercontent.com/CoderDojoPotsdam/material/master/roboter/roedelmitraspberrypi/roedelmitraspberrypi.jpg" /> 
+          </div>
+          <div class="rightFiller">
+            <input type="button" value="set" id="image_button" onclick="javascript:set_robot_image()"><img id="preview_image" class="robotImage" src="https://raw.githubusercontent.com/CoderDojoPotsdam/material/master/roboter/roedelmitraspberrypi/roedelmitraspberrypi.jpg"/>
+          </div>
+          
+        </div>      
       </div>
     </div>
   </body>

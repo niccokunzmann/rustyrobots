@@ -2,7 +2,9 @@
 function get_robots_url() {
   var params = getQueryParams(document.location.search);
   if (params.server == null) {
-    params.server = DEFAULT_ROBOTS_SERVER;
+    params.server = document.location.protocol == 'file:' ? 
+                      DEFAULT_ROBOTS_SERVER_ON_FILE_SYSTEM : 
+                      DEFAULT_ROBOTS_SERVER;
   }
   return params.server + "/robots";
 }

@@ -88,7 +88,7 @@ function execute_path_on_selected_robots(attribute, parameters, callback) {
       script.src = call_url;
       document.body.appendChild(script);
     } else {
-      callback(robot, 'error', attribute + ' not supported');
+      callback(robot, 'error', attribute + ' was not registered as a command.');
     }
   }
 }
@@ -146,6 +146,17 @@ function rename_robot() {
     "hostname" : document.getElementById('robot_hostname').value
   };
   execute_path_on_selected_robots('rename', parameters);
+}
+
+function set_robot_image() {
+  var parameters = {
+    "image_url" : document.getElementById('robot_image').value
+  };
+  execute_path_on_selected_robots('set_image_url', parameters);
+}
+
+function refresh_preview_image() {
+  document.getElementById('preview_image').src = document.getElementById('robot_image').value;
 }
 
 function mark_configuration_options() {
