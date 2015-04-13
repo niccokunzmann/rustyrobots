@@ -39,22 +39,99 @@ Beim Rausnehmen können kleine Teile eventuell durch den Lasercutter fallen. Des
 Zusammenbauen
 -------------
 
-![](bilder/01.jpg)
-![](bilder/02.jpg)
-![](bilder/04.jpg)
-![](bilder/06.jpg)
-![](bilder/07.jpg)
-![](bilder/09.jpg)
-![](bilder/10.jpg)
-![](bilder/11.jpg)
-![](bilder/12.jpg)
-![](bilder/13.jpg)
-![](bilder/14.jpg)
-![](bilder/15.jpg)
-![](bilder/16.jpg)
-![](bilder/17.jpg)
-![](bilder/18.jpg)
-![](bilder/19.jpg)
-![](bilder/20.jpg)
+![](bilder/01.jpg)  
+Die vier Zahnräder paaren, sodass zwei links und zwei rechts drehen, eines mit Kleber beschmieren. Der Kleber darf nicht in die mitte gelangen, da dort später die Radachse verläuft. (links)  
+Dann die Stifte beklebern und in die Räder stecken, sodass sie nur oben rausschauen, nicht unten. (rechts)
 
 
+
+
+![](bilder/02.jpg)  
+Ca. 66mm Gummi abschneiden, wenn es zu groß ist. Es geht auch Luftballon. Bei dickem Gumi darauf achten, dass es sich nicht in zwei Richtungen biegt, da das Gummi schon so schlecht am Kleber hängen bleibt und sich dann immer wieder ablösen könnte.
+
+
+
+![](bilder/04.jpg)  
+Das Gummi kann jetzt am Rad festgeklebt werden. Wenn man dauerhaft Druck darauf ausüben möchte, passt vielleicht ein großer Flaschendeckel oder ein Damestein. Aber auch zurechtgebogene Büroklammern helfen beim Festdrücken. Je nach Dicke und Art des Gummis hält es auch von allein gut am Kleber.
+
+
+
+![](bilder/06.jpg)  
+Die Radstabilisatoren zusammensetzen. Diese dürfen auch nur auf einer Seite überstehen. Kleber benutzen.
+
+
+
+![](bilder/07.jpg)  
+Von diesen Radstabilisatoren gibt es zwei.
+
+
+
+![](bilder/10.jpg)  
+Den Servo in die Halterun stecken. Wie rum ist egal. Dann die Verankerung reinstecken und dabei ein wenig Kleber benutzen, wenn der Servo lange drin bleiben soll. Bestimmt hält es auch ohne Kleber.
+
+
+
+![](bilder/09.jpg)  
+An beiden Seiten kann die Verankerung reingesteckt werden. Wenn der Servo so rum drin ist, wie im Bild gezeigt, dann fällt der Roboter ohne Gewicht nicht um.
+
+
+
+
+![](bilder/11.jpg)  
+Die Beine an den Servohalter stecken. Dabei komt auch Kleber zum Einsatz. Der Drehbare Teil des Servo ist dabei unten, genauso wie die Beine, an die später die Räder kommen.
+
+
+
+
+![](bilder/12.jpg)  
+
+
+
+
+
+![](bilder/13.jpg)  
+Die Radstabilisatoren an die Räder kleben.  
+Die Räder auf die Radachse stecken.   
+Die Radachse an die Beine stecken. Hier muss die Radachse vorsichtig angeklebt werden, damit das Rad nicht festklebt. Man kann auch darüber noch ein Stückchen Holz oder anderes kleben, damit die Achse besser hält.
+
+
+
+![](bilder/14.jpg)  
+
+
+
+![](bilder/15.jpg)  
+Die Zahnräder auf die Räder kleben. Dabei steht nichts mehr über. Versuchen, das Loch in der Mitte von Kleber frei zu halten oder mit einem Stab den Kleber rausbohren.
+
+
+
+
+![](bilder/16.jpg)  
+Die Blockadehebel auf die Drehachse Stecken. 
+
+
+
+![](bilder/17.jpg)  
+Hier sieht man jetzt die kleinen Stecker, die gut verloren gehen.  
+Am besten auf den äußeren Rand vom Loch ganz außen einen Tropfen Kleber machen. Da kommt er nicht an den Blockadehebel, der wackeln soll. Dann den Stecker reinstecken. Der Hebel sollte sich bewegen. Wenn Kleber dran gekommen ist, kann man es nochmal versuchen oder nach dem Trocknen ölen.
+
+
+
+![](bilder/19.jpg)  
+Das Zahnrad draufstecken. Wichtig ist, dass die Zähne gut greifen. Wer in den ersten Schritten die Zahnräder in unterschiedliche Richtungen gemacht hat, sollte jetzt keine Probleme bekommen.
+
+
+
+![](bilder/18.jpg)  
+Auf hier wieder mit etwas Kleber auf dem Loch außen den Stecker befestigen.
+
+
+
+![](bilder/21.jpg)  
+Draufstecken. Es empfiehlt sich, den Servo erst auf eine Seite zu drehen und dann die Drehachse draufzustecken. 
+
+
+
+
+
+![](bilder/22.jpg)  
