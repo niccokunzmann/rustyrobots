@@ -147,12 +147,12 @@ Beim Arduino steckt der Servo am Pin 9, damit die Beispielprgramme funktionieren
 Bein Raspberry Pi steckt der Servo an GPIO Pin 11, damit die Beispielprogramme funktionieren.
 
 So kann man den Servo anschließen:  
-![](bilder/Arduino_eine_Batterie_Steckplatine.png)
-![](bilder/RaspberryPi_eine_Batterie_Steckplatine.png)
+[![](bilder/Arduino_eine_Batterie_Steckplatine.png)](fritzing)
+[![](bilder/RaspberryPi_eine_Batterie_Steckplatine.png)](fritzing)
 
 Sollte der Servo zu viel Strom ziehen und der Arduino oder Raspberry Pi ausschalten oder neustarten, braucht der Servo eine eigene Batterie:  
-![](bilder/Arduino_zwei_Batterien_Steckplatine.png)
-![](bilder/RaspberryPi_zwei_Batterien_Steckplatine.png)
+[![](bilder/Arduino_zwei_Batterien_Steckplatine.png)](fritzing)
+[![](bilder/RaspberryPi_zwei_Batterien_Steckplatine.png)](fritzing)
 
 So sieht ein Rödel Roboter aus, der den Servo direkt am Arduino Nano hat:  
 ![](bilder/ArduinoFertig.jpg)
