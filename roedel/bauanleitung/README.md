@@ -32,7 +32,7 @@ Werkzeuge:
 Ausschneiden
 ------------
 
-3mm dickes Holz ist der Empfohlene Stoff. Acryl ist sehr rutschig. Schneiden dauert ca. 3-4 Minuten.
+3mm dickes Holz ist der empfohlene Stoff. Acryl ist sehr rutschig. Schneiden dauert ca. 3-4 Minuten.
 
 Beim Rausnehmen können kleine Teile eventuell durch den Lasercutter fallen. Deswegen kann man sie vor dem Anheben mit Klebestreifen rausholen.
 
@@ -40,8 +40,8 @@ Zusammenbauen
 -------------
 
 ![](bilder/01.jpg)  
-Die vier Zahnräder paaren, sodass zwei links und zwei rechts drehen, eines mit Kleber beschmieren. Der Kleber darf nicht in die mitte gelangen, da dort später die Radachse verläuft. (links)  
-Dann die Stifte beklebern und in die Räder stecken, sodass sie nur oben rausschauen, nicht unten. (rechts)
+Die vier Zahnräder paaren, sodass zwei links und zwei rechts drehen, eines mit Kleber beschmieren. Der Kleber darf nicht in die Mitte gelangen, da dort später die Radachse verläuft. (links)  
+Dann die Stifte bekleben und in die Räder stecken, sodass sie nur oben rausschauen, nicht unten. (rechts)
 
 
 
@@ -67,18 +67,18 @@ Von diesen Radstabilisatoren gibt es zwei.
 
 
 ![](bilder/10.jpg)  
-Den Servo in die Halterun stecken. Wie rum ist egal. Dann die Verankerung reinstecken und dabei ein wenig Kleber benutzen, wenn der Servo lange drin bleiben soll. Bestimmt hält es auch ohne Kleber.
+Den Servo in die Halterung stecken. Wierum ist egal. Dann die Verankerung reinstecken und dabei ein wenig Kleber benutzen, wenn der Servo lange drin bleiben soll. Bestimmt hält es auch ohne Kleber.
 
 
 
 ![](bilder/09.jpg)  
-An beiden Seiten kann die Verankerung reingesteckt werden. Wenn der Servo so rum drin ist, wie im Bild gezeigt, dann fällt der Roboter ohne Gewicht nicht um.
+An beiden Seiten die Verankerung reingestecken. Wenn der Servo so rum drin ist, wie im Bild gezeigt, dann fällt der Roboter ohne Gewicht nicht um.
 
 
 
 
 ![](bilder/11.jpg)  
-Die Beine an den Servohalter stecken. Dabei komt auch Kleber zum Einsatz. Der Drehbare Teil des Servo ist dabei unten, genauso wie die Beine, an die später die Räder kommen.
+Die Beine an den Servohalter stecken. Dabei komt auch Kleber zum Einsatz. Der drehbare Teil des Servos ist dabei unten, genauso wie die Beine, an die später die Räder kommen.
 
 
 
@@ -135,4 +135,4 @@ Draufstecken. Es empfiehlt sich, den Servo erst auf eine Seite zu drehen und dan
 
 
 ![](bilder/22.jpg)  
-Jetzt kann man sich noch eine Platte ausschneiden und draufkleben.
+Jetzt kann man sich noch eine Platte ausschneiden und draufkleben. Wenn der Kleber getrocknet ist, können die Räder geölt werden.
