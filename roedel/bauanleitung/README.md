@@ -128,10 +128,11 @@ Auf hier wieder mit etwas Kleber auf dem Loch außen den Stecker befestigen.
 
 
 ![](bilder/21.jpg)  
-Draufstecken. Es empfiehlt sich, den Servo erst auf eine Seite zu drehen und dann die Drehachse draufzustecken. 
+Draufstecken. Es empfiehlt sich, den Servo erst auf eine Seite zu drehen und dann die Drehachse draufzustecken. Der Drehwinkel beim ModelCraft-RS2 Servo ist 203°. Somit sollte die Achse 11,5° überdreht sein. 
 
 
 
 
 
 ![](bilder/22.jpg)  
+Jetzt kann man sich noch eine Platte ausschneiden und draufkleben.
