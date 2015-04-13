@@ -136,3 +136,30 @@ Draufstecken. Es empfiehlt sich, den Servo erst auf eine Seite zu drehen und dan
 
 ![](bilder/22.jpg)  
 Jetzt kann man sich noch eine Platte ausschneiden und draufkleben. Wenn der Kleber getrocknet ist, können die Räder geölt werden.
+
+
+
+
+Anschließen
+-----------
+
+Beim Arduino steckt der Servo am Pin 9, damit die Beispielprgramme funktionieren.  
+Bein Raspberry Pi steckt der Servo an GPIO Pin 11, damit die Beispielprogramme funktionieren.
+
+So kann man den Servo anschließen:  
+![](bilder/Arduino_eine_Batterie_Steckplatine.png)
+![](bilder/RaspberryPi_eine_Batterie_Steckplatine.png)
+
+Sollte der Servo zu viel Strom ziehen und der Arduino oder Raspberry Pi ausschalten oder neustarten, braucht der Servo eine eigene Batterie:  
+![](bilder/Arduino_zwei_Batterien_Steckplatine.png)
+![](bilder/RaspberryPi_zwei_Batterien_Steckplatine.png)
+
+So sieht ein Rödel Roboter aus, der den Servo direkt am Arduino Nano hat:  
+![](bilder/ArduinoFertig.jpg)
+
+
+
+
+
+
+
