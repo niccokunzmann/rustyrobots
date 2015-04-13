@@ -135,7 +135,7 @@ Draufstecken. Es empfiehlt sich, den Servo erst auf eine Seite zu drehen und dan
 
 
 ![](bilder/22.jpg)  
-Jetzt kann man sich noch eine Platte ausschneiden und draufkleben. Wenn der Kleber getrocknet ist, können die Räder geölt werden.
+Jetzt kann man sich noch eine Platte ausschneiden und draufkleben. Wenn der Kleber getrocknet ist, können die Räder geölt werden. Dabei sollte das Ölen von Klebeflächen vermieden werden.
 
 
 
@@ -144,7 +144,7 @@ Anschließen
 -----------
 
 Beim Arduino steckt der Servo am Pin 9, damit die Beispielprgramme funktionieren.  
-Bein Raspberry Pi steckt der Servo an GPIO Pin 11, damit die Beispielprogramme funktionieren.
+Beim Raspberry Pi steckt der Servo an GPIO Pin 11, damit die Beispielprogramme funktionieren.
 
 So kann man den Servo anschließen:  
 [![](bilder/Arduino_eine_Batterie_Steckplatine.png)](fritzing)
