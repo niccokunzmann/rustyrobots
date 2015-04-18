@@ -150,7 +150,7 @@ So kann man den Servo anschließen:
 [![](bilder/Arduino_eine_Batterie_Steckplatine.png)](fritzing)
 [![](bilder/RaspberryPi_eine_Batterie_Steckplatine.png)](fritzing)
 
-Sollte der Servo zu viel Strom ziehen und der Arduino oder Raspberry Pi ausschalten oder neustarten, braucht der Servo eine eigene Batterie:  
+Sollte der Servo zu viel Strom ziehen und den Arduino oder Raspberry Pi ausschalten oder neustarten, braucht der Servo eine eigene Batterie:  
 [![](bilder/Arduino_zwei_Batterien_Steckplatine.png)](fritzing)
 [![](bilder/RaspberryPi_zwei_Batterien_Steckplatine.png)](fritzing)
 
