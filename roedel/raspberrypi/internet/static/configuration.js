@@ -167,4 +167,6 @@ function mark_configuration_options() {
 }
 
 window.addEventListener('load', mark_configuration_options);
+window.addEventListener('load', refresh_preview_image);
+
 
