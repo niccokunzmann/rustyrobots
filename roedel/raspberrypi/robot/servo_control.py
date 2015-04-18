@@ -73,9 +73,11 @@ def set_servo_position(degrees):
 def time_to_arrive():
     if current_servo_position is None or wanted_servo_position is None:
         return SERVO.ROTATIONAL_RANGE * \
-               SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
+               SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES * \
+               servo_velocity_multiplier
     return abs(wanted_servo_position - current_servo_position) * \
-           SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
+           SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES * \
+           servo_velocity_multiplier
 
 def set_servo_to_middle():
     set_servo_position(SERVO.ROTATIONAL_RANGE / 2)
