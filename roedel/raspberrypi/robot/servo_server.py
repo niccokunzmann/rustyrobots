@@ -2,7 +2,7 @@
 from servo_control import *
 from configuration import SERVOSERVER
 
-from bottle import Bottle, run
+from bottle import Bottle, run, debug
 import threading
 
 app = Bottle()
@@ -21,6 +21,7 @@ def servo_velocity(multiplier):
 set_servo_to_middle()
 
 if __name__ == '__main__':
+    debug()
     server_thread = threading.Thread(target = run, 
                                          args = (app,),
                                          kwargs = dict(host = SERVOSERVER.HOST,

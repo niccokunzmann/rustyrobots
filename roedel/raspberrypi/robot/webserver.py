@@ -9,7 +9,7 @@ else:
 
 import threading
 from bottle import Bottle, run, request, static_file, response, redirect
-from bottle import auth_basic
+from bottle import auth_basic, debug
 import time
 import socket
 import subprocess
@@ -133,10 +133,10 @@ def servo_position(degrees):
     set_servo_position_without_delay(degrees)
     return "Setting servo position to {}°.".format(int(round(degrees)))
 
-@app.route('/servo_velocity/<degrees:float>')
-def servo_position(multiplier):
+@app.route('/servo_velocity/<multiplier:float>')
+def servo_velocity(multiplier):
     multiplier = set_servo_velocity(multiplier)
-    return "Setting servo position to {}°.".format(int(round(multiplier)))
+    return "Setting servo velocity to '{}'.".format(int(round(multiplier)))
 
 
 @app.route("/execute_python")
@@ -368,9 +368,9 @@ def get_information():
 
 
 if __name__ == '__main__':
+    debug()
     if not is_servo_server_present():
         start_servo_server()
-        
     print("Roedelroboter kann unter {}:{} gesteuert werden.".format(get_ip_address(),
                                                                     WEBSERVER.PORT))
 

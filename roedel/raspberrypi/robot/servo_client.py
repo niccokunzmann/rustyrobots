@@ -26,7 +26,6 @@ def set_servo_position_without_delay(degrees):
     s = make_request('servo_position/{}'.format(degrees))
     time_to_arrive = re.findall("(\\d+)\s*milliseconds", s)
     if time_to_arrive:
-        print('found milliseconds')
         return int(time_to_arrive[0]) / 1000.
     return SERVO.ROTATIONAL_RANGE * SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
 
@@ -37,7 +36,7 @@ def set_servo_position(degrees = 0):
 
 def set_servo_velocity(multiplier = SERVO.DEFAULT_VELOCITY_MULTIPLIER):
     s = make_request('servo_velocity/{}'.format(multiplier))
-    multiplier_ = re.findall("'(.*?)'")
+    multiplier_ = re.findall("'([^']*?)'", s)
     if multiplier_:
         return int(multiplier_[0])
     return multiplier
