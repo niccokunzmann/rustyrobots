@@ -7,30 +7,40 @@ import sys
 import os
 import subprocess
 import time
+import re
 
 last_degrees = None
+
+def make_request(path):
+    url = 'http://{}:{}/{}'.format(SERVOSERVER.HOST, SERVOSERVER.PORT,
+                                    path)
+    with urllib.request.urlopen(url) as r:
+        s = r.read()
+    if isinstance(s, bytes):
+        s = s.decode('UTF-8')
+    return s    
 
 def set_servo_position_without_delay(degrees):
     # direct usage of the servo_control will remove the ability of
     # the server to control the servo
-    url = 'http://{}:{}/servo_position/{}'.format(SERVOSERVER.HOST, SERVOSERVER.PORT,
-                                                  degrees)
-    with urllib.request.urlopen(url) as r:
-        r.read()
-
-def sleep_until_in_position(degrees):
-    global last_degrees
-    if last_degrees is None:
-        degree_difference = SERVO.ROTATIONAL_RANGE
-    else:
-        degree_difference = abs(degrees - last_degrees)
-    time_for_rotation = degree_difference * SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
-    time.sleep(time_for_rotation)
-    last_degrees = degrees
+    s = make_request('servo_position/{}'.format(degrees))
+    time_to_arrive = re.findall("(\\d+)\s*milliseconds", s)
+    if time_to_arrive:
+        print('found milliseconds')
+        return int(time_to_arrive[0]) / 1000.
+    return SERVO.ROTATIONAL_RANGE * SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
 
 def set_servo_position(degrees = 0):
-    set_servo_position_without_delay(degrees)
-    sleep_until_in_position(degrees)
+    time_to_arrive = set_servo_position_without_delay(degrees)
+    time.sleep(time_to_arrive)
+    return 0
+
+def set_servo_velocity(multiplier = SERVO.DEFAULT_VELOCITY_MULTIPLIER):
+    s = make_request('servo_velocity/{}'.format(multiplier))
+    multiplier_ = re.findall("'(.*?)'")
+    if multiplier_:
+        return int(multiplier_[0])
+    return multiplier
 
 def is_servo_server_present():
     s = socket.socket()
@@ -47,5 +57,5 @@ def start_servo_server():
     server_path = os.path.join(os.path.dirname(__file__), 'servo_server.py')
     return subprocess.Popen([sys.executable, server_path])
     
-__all__ = ['set_servo_position_without_delay', 'sleep_until_in_position',
+__all__ = ['set_servo_position_without_delay', 'set_servo_velocity', 
            'set_servo_position', 'is_servo_server_present', 'start_servo_server']

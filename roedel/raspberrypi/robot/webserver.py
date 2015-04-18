@@ -133,6 +133,12 @@ def servo_position(degrees):
     set_servo_position_without_delay(degrees)
     return "Setting servo position to {}°.".format(int(round(degrees)))
 
+@app.route('/servo_velocity/<degrees:float>')
+def servo_position(multiplier):
+    multiplier = set_servo_velocity(multiplier)
+    return "Setting servo position to {}°.".format(int(round(multiplier)))
+
+
 @app.route("/execute_python")
 def execute_python():
     escaped_python_code = request.query['code']

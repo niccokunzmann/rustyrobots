@@ -68,6 +68,14 @@ wanted_servo_position = None
 def set_servo_position(degrees):
     global wanted_servo_position
     wanted_servo_position = degrees
+    return time_to_arrive()
+
+def time_to_arrive():
+    if current_servo_position is None or wanted_servo_position is None:
+        return SERVO.ROTATIONAL_RANGE * \
+               SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
+    return abs(wanted_servo_position - current_servo_position) * \
+           SERVO.MOVEMENT_SPEED_IN_SECONDS_PER_DEGREES
 
 def set_servo_to_middle():
     set_servo_position(SERVO.ROTATIONAL_RANGE / 2)
