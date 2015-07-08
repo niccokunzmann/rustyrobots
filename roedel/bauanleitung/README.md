@@ -4,9 +4,13 @@ Bauanleitung für Rödel
 Vorbereitung
 ------------
 
-- 1x [Modelcraft RS-2 Servo](../../equipment/motoren/Modelcraft_RS-2.md) oder vergleichbar
-- 1x [ausgeschnittene Zeichnung](../roedel.svg) aus Holz, da Acryl zu sehr rutscht und die Räder nicht einrasten
-- optimal: Gummi für die Reifen (breite Haushaltsgummis oder Luftballon)
+- 1x Servo und Zeichnung, eine Option wählen:
+	- [Modelcraft RS-2 Servo](../../equipment/motoren/Modelcraft_RS-2.md) und [roedel](../roedel.svg)
+	- [Mini Servo](../../equipment/motoren/MiniServo.md) und [miniroedel](../miniroedel.svg)
+	
+    Die Zeichnung aus Holz ausschneiden, da Acryl zu sehr rutscht und die Räder schlecht einrasten.
+
+- optimal: Gummi für die Reifen (Luftballon oder breite Haushaltsgummis)
 
 Benötigte Teile für einen Arduino oder Raspberry Pi:
 
