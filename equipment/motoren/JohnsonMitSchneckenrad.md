@@ -3,6 +3,8 @@ Johnson
 
 Johnson stellt viele Motoren her, hier ist ein bestimmer gemeint.
 
+Siehe auch [Johnson ohne Schneckenrad](Johnson.md).
+
 Links
 -----
 

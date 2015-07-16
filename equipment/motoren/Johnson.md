@@ -3,6 +3,8 @@ Johnson
 
 Johnson stellt viele Motoren her, hier ist ein bestimmer gemeint.
 
+- [Datenblatt](./Johnson Motor Spec D310561B.pdf)
+
 Links
 -----
 
