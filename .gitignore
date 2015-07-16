@@ -41,5 +41,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# =========================
+# User ignored files
+# =========================
+
 temp
-/murle
