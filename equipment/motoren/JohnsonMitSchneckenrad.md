@@ -1,7 +1,7 @@
 Johnson
 =======
 
-Johnson stellt viele Motoren her, hier ist ein bestimmer gemeint.
+Johnson stellt viele Motoren her, hier ist ein bestimmter gemeint.
 
 Siehe auch [Johnson ohne Schneckenrad](Johnson.md).
 

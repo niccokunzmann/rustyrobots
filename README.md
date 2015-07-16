@@ -7,6 +7,7 @@ Kleine, lasercutbare Roboter.
 - [Johanna](johanna), ein Roboter mit einem Motor mit Schneckenrad
 - [Rödel](roedel), ein Roboter mit einem Servo
 - [Greifarm](greifarm), ein Roboterarm mit Greifer mit einem Servo
+- [Legoadapter](legoadapter), Zahnräder für Lego Technik und Gehäuse für Motoren.
 - [Spinne](spinne), ein Spinnenroboter mit zwei Motoren mit Schneckenrad
 
 Andere Projekte
