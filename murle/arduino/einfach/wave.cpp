@@ -22,7 +22,7 @@ void setup_timer2_frequency(){
     TCCR2A |= (1 << WGM21);
     // Set CSxx bits for 32 prescaler
     // http://www.instructables.com/file/FY3SNSNHFD1FIKG
-    TCCR2B |= (1 << CS21 || 1 << CS20);   
+    TCCR2B |= (1 << CS21 | 1 << CS20);   
     // enable timer compare interrupt
     TIMSK2 |= (1 << OCIE2A);  
   
