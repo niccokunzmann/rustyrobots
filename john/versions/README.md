@@ -8,6 +8,9 @@ Dise Version funktioniert gut.
 Die Vorderräder wurden verbessert - sie brechen schlechter ab. Sie stammen von Rödels Hinterrädern.  
 Die Antriebsachse ist immernoch eine Schwachstelle. Sie bricht.
 
+![john v0.4.1.jpg](john v0.4.1.jpg)
+Bild vom [HPI Schülercamp 2015](http://www.hpi.de/schueler)
+
 John V0.3
 ---------
 
