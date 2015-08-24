@@ -47,3 +47,10 @@ Temporary Items
 # =========================
 
 temp
+
+# LaTeX
+# =====
+*.log
+*.aux
+*.synctex.gz
+*.out
