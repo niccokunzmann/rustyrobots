@@ -1,7 +1,7 @@
 Bauanleitung für John
 =====================
 
-Die Bauanleitung gibt es als PDF zum Download und Ausdruck im [Bauanleitung.pdf](./Bauanleitung.pdf).
+Die Bauanleitung gibt es als PDF zum Download und Ausdruck im [Bauanleitung.pdf](https://github.com/niccokunzmann/rustyrobots/raw/master/john/bauanleitung/Bauanleitung.pdf).
 
 Vorbereitung
 ------------
