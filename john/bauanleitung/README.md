@@ -1,6 +1,8 @@
 Bauanleitung für John
 =====================
 
+Die Bauanleitung gibt es als PDF zum Download und Ausdruck im [Bauanleitung.pdf](./Bauanleitung.pdf).
+
 Vorbereitung
 ------------
 
