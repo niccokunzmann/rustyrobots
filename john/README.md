@@ -10,3 +10,5 @@ Die Idee kommt von einen Ferngesteuerten Auto, das nur vor-gerade-aus und zurüc
 Auf [dem Video](http://www.youtube.com/watch?v=kYLdbn5RwS8) sieht man, wie ein Roboter das Ziel erreicht, der die selbe Funktionalität hat.
 
 [Bauanleitung](bauanleitung)
+
+John wurde beim [Coder Dojo Potsdam](https://github.com/CoderDojoPotsdam/material/tree/master/roboter#roboter) und beim [HPI Sommercamp 2015](http://hpi.de/veranstaltungen/schuelerveranstaltungen/2015/hpi-sommercamp-2015.html) ([Pressemitteilung](https://idw-online.de/de/news635705)) verwendet.
