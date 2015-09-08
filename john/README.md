@@ -11,4 +11,4 @@ Auf [dem Video](http://www.youtube.com/watch?v=kYLdbn5RwS8) sieht man, wie ein R
 
 [Bauanleitung](bauanleitung)
 
-John wurde beim [Coder Dojo Potsdam](https://github.com/CoderDojoPotsdam/material/tree/master/roboter#roboter) und beim [HPI Sommercamp 2015](http://hpi.de/veranstaltungen/schuelerveranstaltungen/2015/hpi-sommercamp-2015.html) ([Pressemitteilung](https://idw-online.de/de/news635705)) verwendet.
+John wurde beim [Coder Dojo Potsdam](https://github.com/CoderDojoPotsdam/material/tree/master/roboter#roboter) ([Polizeiauto](https://github.com/CoderDojoPotsdam/projects/tree/135dd3912bdfdeb4d7d79207e5b88058e8febbb7/Arduino/Polizei_auto)) und beim [HPI Sommercamp 2015](http://hpi.de/veranstaltungen/schuelerveranstaltungen/2015/hpi-sommercamp-2015.html) ([Pressemitteilung](https://idw-online.de/de/news635705)) verwendet.
