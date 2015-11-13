@@ -15,7 +15,7 @@ void setup()
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object 
 } 
 
-const int v = 100;
+const int v = 10;
  
  
 void loop() 
