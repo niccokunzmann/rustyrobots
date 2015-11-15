@@ -10,6 +10,8 @@ Kleine, lasercutbare Roboter.
 - [Legoadapter](legoadapter), Zahnräder für Lego Technik und Gehäuse für Motoren.
 - [Spinne](spinne), ein Spinnenroboter mit zwei Motoren mit Schneckenrad
 
+[Videos](https://www.youtube.com/playlist?list=PLxMGFFiBKgdY6Pk3wV5FpW8jbH12gzxLX)
+
 Andere Projekte
 ---------------
 
