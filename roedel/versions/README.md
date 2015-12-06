@@ -1,6 +1,21 @@
 Versionen von Roedel
 ====================
 
+Roedel v0.2.5
+-------------
+
+Durch viel belastung ist die Hinterachse von allen Rödelrobotern gebrochen. Sie ist jetzt durchgängig dick, um Brüche zu vermeiden.
+
+Roedel v0.2.4
+-------------
+
+Die Einrastzahnräder wurden mehr angeschrägt, um besseren Halt zu bieten.
+
+Roedel v0.2.3
+-------------
+
+Die Schraubenlöcher wurden durch Steckverbinder erssetzt. Jetzt braucht man keine Schrauben mehr.
+
 Roedel v0.2.2
 -------------
 
