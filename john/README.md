@@ -1,7 +1,7 @@
 John
 ----
 
-![See the versions for pictures.](versions/john v0.4.1.jpg)
+![See the versions for pictures.](versions/john&#32;v0.4.1.jpg)
 
 Ein gibt ein [Youtube Video](https://www.youtube.com/watch?v=KsPsh_-MPLM). 
 
