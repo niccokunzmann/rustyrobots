@@ -1,5 +1,5 @@
-Roedel
-------
+Rödel
+-----
 
 ![Bilder gibt es im Ordner versions](versions/roedel&#32;v0.2.2&#32;arduino.jpg)
 
@@ -15,3 +15,5 @@ Es gibt Videos zur Steuerung mit
 Die Unterordner enthalten mehr Informationen zu den verschiedenen Möglichkeiten.
 
 [Bauanleitung](bauanleitung)
+
+Der Roboter fährt schon mit dem Beispielprogramm für den Arduino-Servo "Sweep", das den Servo immer hin und her bewegt.
